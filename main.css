@@ -1,0 +1,42 @@
+body {
+    padding: 0;
+    margin: 0;
+    background: #ffffff;
+}
+.headerCustom {
+    padding: 60px;
+    text-align: center;
+    color:#6ab446;
+  }
+.navbar {
+    background:#6ab446;
+    height: 55px;
+    font-size: large;
+}
+.nav-link,
+.navbar-brand {
+    color: #fff;
+    cursor: pointer;
+}
+.nav-link {
+    margin-right: 2em !important;
+}
+.nav-link:hover {
+    color: #000;
+}
+.navbar-collapse {
+    justify-content: flex-end;
+}
+.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+
+.list-group-item {
+    height: 50px;
+    width: 400px;
+    background: #cfe4c8;
+    align-self: center;
+}
+
