@@ -1,6 +1,6 @@
 import java.sql.*;
 
-public class database_init {
+public class database {
     public static void main(String[] args) throws SQLException {
 
         //Add jdbc to the libraries in project structure
