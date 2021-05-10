@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Zoo Sample Page</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="employee.css">
+    </head>
+    <body>
+        <script type="text/javascript">
+            function show_form(id){
+                document.getElementById(id).style.display="block";
+            }
+            function hide_form(id){
+                document.getElementById(id).style.display="none";
+            }
+
+        </script>
+        <nav class="navbar navbar-expand-md">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">Zoo</span>
+            </div>
+            <div class="collapse navbar-collapse" id="main-navigation">
+                <ul class="nav navbar-nav navbar-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="coordinator_acc_events.html"><strong>Events</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="view_cages.html">View & Assign Cages</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <div class="row">
+            <div class="column">
+                <table style="width:60%" class="margin-left-table">
+                    <tr>
+                        <th>Please pick an event type</th>
+                    </tr>
+                    <tr>
+                    <td><div class="form-check">
+                        <input class="form-check-input" type="radio" value="" id="flexRadioDefault1" name="radio" onclick='hide_form("edu_prog");show_form("group_tour");hide_form("con_org")'> 
+                        <label class="form-check-label" for="flexRadioDefault1">Group Tour</label></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="form-check">
+                            <input class="form-check-input" type="radio" value="" id="flexCheckDefault2" name="radio" onclick='show_form("edu_prog");hide_form("group_tour");hide_form("con_org")'>
+                            <label class="form-check-label" for="flexRadioDefault2">Educational Program</label></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="form-check">
+                            <input class="form-check-input" type="radio" value="" id="flexCheckDefault3" name="radio" onclick='hide_form("edu_prog");hide_form("group_tour");show_form("con_org")'>
+                            <label class="form-check-label" for="flexRadioDefault3">Conservation Organization</label></div></td>
+                </table>
+                <p>&nbsp;</p>
+                <div class="margin-left-button">
+                    <a href="coordinator_acc_events.html" class="btn btn-outline-success" role="button">Back To Event List</a>
+                </div>
+            </div>
+            <div class="column">
+                <div>
+                    <div class="testbox">
+                        <form id="group_tour" style="display:none">
+                            <div class="item">
+                                <label for="name">Event Name<span>*</span></label>
+                                <input id="name" type="text" name="name" placeholder="" required/>
+                            </div>
+                            <div class="item">
+                                <div class="name-item">
+                                    <div>
+                                        <label for="max_cap">Max Capacity<span>*</span></label>
+                                        <input id="name" type="text" name="name" placeholder="" required/>
+                                    </div>
+                                    <div>
+                                        <label for="date">Date<span>*</span></label>
+                                        <input id="date" type="date" name="date" required/>
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    <div>
+                                        <label for="date">Time<span>*</span></label>
+                                        <input id="time" type="time" name="time" required/>
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <label for="description">Description</label>
+                                <textarea rows="3"></textarea>
+                            </div>
+                            <div class="margin-left-button">
+                                <a href="coordinator_acc_events.html" class="btn btn-outline-success" role="button">Create Event</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="testbox">
+                        <form id="edu_prog" style="display:none">
+                            <div class="item">
+                                <label for="name">Event Name<span>*</span></label>
+                                <input id="name" type="text" name="name" placeholder="" required/>
+                            </div>
+                            <div class="item">
+                                <label for="name">Topic<span>*</span></label>
+                                <input id="name" type="text" name="name" placeholder="" required/>
+                            </div>
+                            <div class="item">
+                                <div class="name-item">
+                                    <div>
+                                        <label for="max_cap">Max Capacity<span>*</span></label>
+                                        <input id="name" type="text" name="name" placeholder="" required/>
+                                    </div>
+                                    <div>
+                                        <label for="date">Date<span>*</span></label>
+                                        <input id="date" type="date" name="date" required/>
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    <div>
+                                        <label for="date">Time<span>*</span></label>
+                                        <input id="time" type="time" name="time" required/>
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                    <label for="description">Description</label>
+                                    <textarea rows="3"></textarea>
+                            </div>
+                            <div class="margin-left-button">
+                                <a href="coordinator_acc_events.html" class="btn btn-outline-success" role="button">Create Event</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="testbox">
+                        <form id="con_org" style="display:none">
+                            <div class="item">
+                                <label for="name">Event Name<span>*</span></label>
+                                <input id="name" type="text" name="name" placeholder="" required/>
+                            </div>
+                            <div class="item">
+                                <label for="name">Cause<span>*</span></label>
+                                <input id="name" type="text" name="name" placeholder="" required/>
+                            </div>
+                            <div class="item">
+                                <div class="name-item">
+                                    <div>
+                                        <label for="max_cap">Max Capacity<span>*</span></label>
+                                        <input id="name" type="text" name="name" placeholder="" required/>
+                                    </div>
+                                    <div>
+                                        <label for="goal">Goal Amount<span>*</span></label>
+                                        <input id="goal" type="goal" name="goal" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="name-item">
+                                    <div>
+                                        <label for="date">Date<span>*</span></label>
+                                        <input id="date" type="date" name="date" required/>
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    <div>
+                                        <label for="date">Time<span>*</span></label>
+                                        <input id="time" type="time" name="time" required/>
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                    <label for="description">Description</label>
+                                    <textarea rows="3"></textarea>
+                            </div>
+                            <div class="margin-left-button">
+                                <a href="coordinator_acc_events.html" class="btn btn-outline-success" role="button">Create Event</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+body {
+    padding: 0;
+    margin: 0;
+    background: #ffffff;
+}
+
+.headerCustom {
+    padding: 60px;
+    text-align: center;
+    color:#6ab446;
+  }
+.navbar {
+    background:#6ab446;
+    height: 55px;
+    font-size: large;
+}
+
+.nav-link,.navbar-brand {
+    color: #fff;
+    cursor: pointer;
+}
+
+.nav-link {
+    margin-right: 2em !important;
+}
+
+.nav-link:hover {
+    color: #000;
+}
+.navbar-collapse {
+    justify-content: flex-end;
+}
+.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+
+.list-group-item {
+    height: 50px;
+    width: 400px;
+    background: #cfe4c8;
+    align-self: center;
+}
+
+table { box-shadow: 3px 3px 2px 2px #888888; 
+	}
+
+caption {
+  display: table-caption;
+  text-align: center;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.margin-left-table{
+  margin-left: 100px
+}
+
+.margin-left-button{
+  margin-left: 300px
+}
+
+tr:hover {background-color: #f5f5f5;}
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+.column {
+  float: left;
+  width: 50%;
+  padding: 20px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+form {
+      width: 100%;
+      padding: 20px;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 0 20px 0  #004d00;
+}
+
+.testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      margin-right: 250px;
+}
+
+input {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+}
+
+ input {
+      width: calc(100% - 10px);
+      padding: 5px;
+}
+
+
+.item {
+      position: relative;
+      margin: 10px 0;
+      }
+
+.item span {
+      color: red;
+}
+
+.name-item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+}
+
+.name-item input, .name-item div {
+      width: calc(33% - 25px);
+}
+
+.name-item div input {
+      width:94%;}
+
+.name-item div label {
+      display:block;
+      padding-bottom:5px;
+}
+
+textarea {
+      width: calc(100% - 12px);
+      padding: 5px;
+}
