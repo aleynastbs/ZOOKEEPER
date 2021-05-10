@@ -1,6 +1,6 @@
 import java.sql.*;
 
-public class database {
+public class database{
     public static void main(String[] args) throws SQLException {
 
         //Add jdbc to the libraries in project structure
@@ -404,9 +404,11 @@ public class database {
             stmt.executeUpdate("INSERT INTO Belongs_to VALUES" +
                     "(1,1);");
             stmt.executeUpdate("INSERT INTO Area(area_name) VALUES" +
-                    "('Entrance');");
+                    "('Entrance')," +
+                    "('Center');");
             stmt.executeUpdate("INSERT INTO Shop(shop_name, shop_description) VALUES" +
-                    "('Gift Shop', 'Key chains, magnets...');");
+                    "('Gift_Shop', 'Key chains, magnets...')," +
+                    "('Toy_Shop', 'Zoo themed toys');");
             stmt.executeUpdate("INSERT INTO Item(item_name, item_stock, item_price) VALUES" +
                     "('key chain', 10, 5)," +
                     "('magnet', 15, 10)," +
@@ -414,7 +416,8 @@ public class database {
             stmt.executeUpdate("INSERT INTO Is_In_C VALUES" +
                     "(1,1);");
             stmt.executeUpdate("INSERT INTO Is_In_S VALUES" +
-                    "(1,1);");
+                    "(1,1),"+
+                    "(2,2);");
             stmt.executeUpdate("INSERT INTO Sells VALUES" +
                     "(1,1)," +
                     "(1,2)," +
