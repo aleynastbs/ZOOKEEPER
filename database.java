@@ -78,16 +78,16 @@ public class database{
 
             //Create Tables
             stmt.executeUpdate("CREATE TABLE User(" +
-                            "user_id INT AUTO_INCREMENT," +
-                            "username VARCHAR(50) NOT NULL UNIQUE," +
-                            "email VARCHAR(50) NOT NULL UNIQUE," +
-                            "full_name VARCHAR(50) NOT NULL," +
-                            "address VARCHAR(50) NOT NULL," +
-                            "bio VARCHAR(100) NOT NULL," +
-                            "birth_date DATE NOT NULL," +
-                            "password VARCHAR(50) NOT NULL," +
-                            "PRIMARY KEY (user_id))" +
-                            "ENGINE=innodb");
+                    "user_id INT AUTO_INCREMENT," +
+                    "username VARCHAR(50) NOT NULL UNIQUE," +
+                    "email VARCHAR(50) NOT NULL UNIQUE," +
+                    "full_name VARCHAR(50) NOT NULL," +
+                    "address VARCHAR(50) NOT NULL," +
+                    "bio VARCHAR(100) NOT NULL," +
+                    "birth_date DATE NOT NULL," +
+                    "password VARCHAR(50) NOT NULL," +
+                    "PRIMARY KEY (user_id))" +
+                    "ENGINE=innodb");
             stmt.executeUpdate("CREATE TABLE Visitor(" +
                     "visitor_id INT," +
                     "last_visit DATE," +
@@ -137,7 +137,8 @@ public class database{
                     "max_capacity INT NOT NULL," +
                     "num_of_participants INT NOT NULL DEFAULT 0," +
                     "date DATE NOT NULL," +
-                    "duration INT NOT NULL," +
+                    "start_at VARCHAR(5) NOT NULL," +
+                    "end_at VARCHAR(5) NOT NULL," +
                     "PRIMARY KEY(event_id))" +
                     "ENGINE=innodb");
             stmt.executeUpdate("CREATE TABLE Group_Tour( " +
@@ -365,10 +366,12 @@ public class database{
                     "(DATE '2022-05-08', 100);");
             stmt.executeUpdate("INSERT INTO Has VALUES" +
                     "(1, 1, 'gold')");
-            stmt.executeUpdate("INSERT INTO Event(event_name, description, max_capacity, num_of_participants, date, duration) VALUES" +
-                    "('event1', 'fun', 100, 20, DATE '2022-05-08', 1)," +
-                    "('event2', 'not fun', 50, 30, DATE '2022-07-08', 2)," +
-                    "('event3', 'so fun', 150, 40, DATE '2022-06-08', 2);");
+            stmt.executeUpdate("INSERT INTO Event(event_name, description, max_capacity, num_of_participants, date, start_at, end_at) VALUES" +
+                    "('event1', 'fun', 100, 20, DATE '2022-05-08', '10:00', '11:00')," +
+                    "('event2', 'not fun', 50, 30, DATE '2022-07-08', '10:00', '11:00')," +
+                    "('event3', 'so fun', 150, 40, DATE '2022-06-08', '10:00', '11:00')," +
+                    "('event3', 'so fun', 150, 40, DATE '2022-06-08', '10:00', '11:00')," +
+                    "('event4', 'not fun', 50, 30, DATE '2024-07-03', '10:00', '11:00');");
             stmt.executeUpdate("INSERT INTO Group_Tour VALUES" +
                     "(1);");
             stmt.executeUpdate("INSERT INTO Educational_Program VALUES" +
