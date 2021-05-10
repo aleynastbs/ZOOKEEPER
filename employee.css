@@ -46,6 +46,10 @@ body {
 table { box-shadow: 3px 3px 2px 2px #888888; 
 	}
 
+.table-no-shadow{
+      box-shadow: 3px 3px 2px 2px #FFFFFF; 
+}
+
 caption {
   display: table-caption;
   text-align: center;
@@ -116,7 +120,7 @@ form {
       margin-right: 250px;
 }
 
-input {
+input, select {
       margin-bottom: 10px;
       border: 1px solid #ccc;
       border-radius: 3px;
@@ -127,6 +131,11 @@ input {
       padding: 5px;
 }
 
+select {
+      width: 20%;
+      padding: 7px 0;
+      background: transparent;
+      }
 
 .item {
       position: relative;
