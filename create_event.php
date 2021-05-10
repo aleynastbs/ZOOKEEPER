@@ -83,10 +83,10 @@
                         <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="events_coordiantor.php"><strong>Events</strong></a>
+                        <a class="nav-link" href="events_coordinator.php"><strong>Events</strong></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="view_cages.html">View & Assign Cages</a>
+                        <a class="nav-link" href="view_cages_coordinator.php">View & Assign Cages</a>
                     </li>
                 </ul>
             </div>
@@ -138,8 +138,6 @@
                                         <input id="date_gt" type="date" name="date_gt" required/>
                                         <i class="fas fa-calendar-alt"></i>
                                     </div>
-                                </div>
-                                <div class="name-item">
                                     <div>
                                         <label for="s_time_gt">Start Time<span>*</span></label>
                                         <input id="s_time_gt" type="time" name="s_time_gt" required/>
@@ -182,16 +180,14 @@
                                         <input id="date_ep" type="date" name="date_ep" required/>
                                         <i class="fas fa-calendar-alt"></i>
                                     </div>
-                                </div>
-                                <div class="name-item">
                                     <div>
-                                        <label for="s_time_gt">Start Time<span>*</span></label>
-                                        <input id="s_time_gt" type="time" name="s_time_gt" required/>
+                                        <label for="s_time_ep">Start Time<span>*</span></label>
+                                        <input id="s_time_ep" type="time" name="s_time_ep" required/>
                                         <i class="fas fa-clock"></i>
                                     </div>
                                     <div>
                                         <label for="e_time_gt">End Time<span>*</span></label>
-                                        <input id="e_time_gt" type="time" name="e_time_gt" required/>
+                                        <input id="e_time_ep" type="time" name="e_time_ep" required/>
                                         <i class="fas fa-clock"></i>
                                     </div>
                                 </div>
@@ -211,12 +207,10 @@
                                 <label for="name_co">Event Name<span>*</span></label>
                                 <input id="name_co" type="text" name="name_co" placeholder="" required/>
                             </div>
-                            <div class="item">
+                            <div class="name-item"><div>
                                 <label for="cause_co">Cause<span>*</span></label>
                                 <input id="cause_co" type="text" name="cause_co" placeholder="" required/>
                             </div>
-                            <div class="item">
-                                <div class="name-item">
                                     <div>
                                         <label for="max_cap_co">Max Capacity<span>*</span></label>
                                         <input id="max_cap_co" type="text" name="max_cap_co" placeholder="" required/>
@@ -226,28 +220,23 @@
                                         <input id="goal_co" type="text" name="goal_co" required/>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item">
                                 <div class="name-item">
                                     <div>
                                         <label for="date_co">Date<span>*</span></label>
                                         <input id="date_co" type="date" name="date_co" required/>
                                         <i class="fas fa-calendar-alt"></i>
                                     </div>
-                                    </div>
-                                <div class="name-item">
                                     <div>
-                                        <label for="s_time_gt">Start Time<span>*</span></label>
-                                        <input id="s_time_gt" type="time" name="s_time_gt" required/>
+                                        <label for="s_time_co">Start Time<span>*</span></label>
+                                        <input id="s_time_co" type="time" name="s_time_co" required/>
                                         <i class="fas fa-clock"></i>
                                     </div>
                                     <div>
-                                        <label for="e_time_gt">End Time<span>*</span></label>
-                                        <input id="e_time_gt" type="time" name="e_time_gt" required/>
+                                        <label for="e_time_co">End Time<span>*</span></label>
+                                        <input id="e_time_co" type="time" name="e_time_co" required/>
                                         <i class="fas fa-clock"></i>
                                     </div>
-                                    </div>
-                            </div>
+                                </div>
                             <div class="item">
                                     <label for="description_co">Description</label>
                                     <textarea name=desc_co rows="3"></textarea>

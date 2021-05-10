@@ -18,10 +18,10 @@
                         <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="coordinator_acc_events.html"><strong>Events</strong></a>
+                        <a class="nav-link" href="events_coordinator.php"><strong>Events</strong></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="view_cages.html">View & Assign Cages</a>
+                        <a class="nav-link" href="view_cages_coordinator.php">View & Assign Cages</a>
                     </li>
                 </ul>
             </div>

@@ -347,19 +347,22 @@ public class database{
                     "('aleynaS', 'as@hotmail.com', 'Aleyna Sütbaş', 'ankara', 'student', DATE '2000-08-16', 'abcd')," +
                     "('melihD', 'md@hotmail.com', 'Melih Diksu', 'ankara', 'student', DATE '2000-08-16', 'abcd')," +
                     "('laraF', 'lf@hotmail.com', 'Lara Fenercioğlu', 'ankara', 'student', DATE '2000-08-16', 'abcd')," +
-                    "('berkT', 'bt@hotmail.com', 'Berk Takıt', 'ankara', 'student', DATE '1998-12-26', 'abcd');");
+                    "('berkT', 'bt@hotmail.com', 'Berk Takıt', 'ankara', 'student', DATE '1998-12-26', 'abcd'),"+
+                    "('inciA', 'ia@hotmail.com', 'Berk Takıt', 'ankara', 'student', DATE '1998-12-26', 'abcd');");
             stmt.executeUpdate("INSERT INTO Visitor VALUES" +
                     "(1, DATE '2021-05-10');");
             stmt.executeUpdate("INSERT INTO Employee VALUES" +
                     "(2, 1000, DATE '2020-02-10')," +
                     "(3, 1000, DATE '2020-02-10')," +
-                    "(4, 1000, DATE '2020-02-10');");
+                    "(4, 1000, DATE '2020-02-10'),"+
+                    "(5, 1000, DATE '2020-02-10');");
             stmt.executeUpdate("INSERT INTO Keeper VALUES" +
                     "(2);");
             stmt.executeUpdate("INSERT INTO Veterinarian VALUES" +
                     "(3, 'dog');");
             stmt.executeUpdate("INSERT INTO Coordinator VALUES" +
-                    "(4);");
+                    "(4),"+
+                    "(5);");
             stmt.executeUpdate("INSERT INTO Comment(content, like_amount, dislike_amount) VALUES" +
                     "('good', 10, 5);");
             stmt.executeUpdate("INSERT INTO Membership(expiration_date, price) VALUES" +
@@ -393,19 +396,28 @@ public class database{
             stmt.executeUpdate("INSERT INTO Invites VALUES" +
                     "(3,2,4,'ACCEPTED');");
             stmt.executeUpdate("INSERT INTO Animal(animal_species, animal_name) VALUES" +
-                    "('lion', 'jack');");
+                    "('lion', 'berk')," +
+                    "('monkey', 'lara')," +
+                    "('snake', 'melih')," +
+                    "('alligator', 'aleyna');");
             stmt.executeUpdate("INSERT INTO Food(food_name, food_qty) VALUES" +
                     "('potato', 100);");
             stmt.executeUpdate("INSERT INTO Schedules VALUES" +
                     "(2,1,'move around', DATE '2021-05-15');");
             stmt.executeUpdate("INSERT INTO Cage(cage_size, cage_type) VALUES" +
-                    "(50, 'circle');");
+                    "(50, 'circle'),"+
+                    "(75, 'square'),"+
+                    "(61, 'circle'),"+
+                    "(61, 'circle');");
             stmt.executeUpdate("INSERT INTO Regularizes VALUES" +
                     "(1,2,1);");
             stmt.executeUpdate("INSERT INTO Requests VALUES" +
                     "(2,3,1,'broken leg', DATE '2021-05-17', 'ACCEPTED');");
             stmt.executeUpdate("INSERT INTO Belongs_to VALUES" +
-                    "(1,1);");
+                    "(1,1)," +
+                    "(2,2)," +
+                    "(3,3)," +
+                    "(4,4);");
             stmt.executeUpdate("INSERT INTO Area(area_name) VALUES" +
                     "('Entrance')," +
                     "('Center');");
@@ -428,7 +440,8 @@ public class database{
             stmt.executeUpdate("INSERT INTO Buys VALUES" +
                     "(1,1,1);");
             stmt.executeUpdate("INSERT INTO Assigns VALUES" +
-                    "(2,1,4);");
+                    "(2,1,4),"+
+                    "(2,2,5);");
             stmt.executeUpdate("INSERT INTO Creates_Complaint_Form VALUES" +
                     "(1,1);");
 
