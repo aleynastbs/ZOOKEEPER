@@ -61,10 +61,11 @@
             }
             else{ 
               while($row = $shops->fetch_assoc()) {
-              $link = $row["shop_name"] + ".php";
+              $link = $row["shop_name"].".php";
+              $link = strtolower($link);
               echo 
               '<tbody><tr>
-                  <th scope="row"><a href="gift_shop.html" class="btn btn-outline-success btn-sm" role="button">Go</a></th>
+                  <th scope="row"><a href=',$link, ' class="btn btn-outline-success btn-sm" role="button">Go</a></th>
                   <td>', $row["shop_name"], '</td>
                   <td>',$row["area_name"],'</td>
                   <td>',$row["shop_description"],'</td>

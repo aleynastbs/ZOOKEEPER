@@ -22,7 +22,7 @@
                         <a class="nav-link" href="#">Events</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><strong>Gift Shop</strong></a>
+                        <a class="nav-link" href="#"><strong>Toy Shop</strong></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Animals</a>
@@ -37,8 +37,8 @@
         <?php
         include("configure.php");
         session_start();
-        $shop_name = "Gift_Shop";
-        $shop_id = 1;
+        $shop_name = "Toy_Shop";
+        $shop_id = 2;
         $visitor_id = 1; //for test purposes
         #$login = $_SESSION['login_user'];
         #$visitor_id = "SELECT user_id FROM User WHERE username = '$login'";
@@ -104,7 +104,7 @@
                 }
                 echo "<script>
                 alert('Transaction is successfull');
-                window.location.href='gift_shop.php';
+                window.location.href='toy_shop.php';
                 </script>";
               }
             }
