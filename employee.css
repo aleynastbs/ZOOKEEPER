@@ -91,6 +91,23 @@ form {
       box-shadow: 0 0 20px 0  #004d00;
 }
 
+.update-form {
+      width: 50%;
+      padding: 20px;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 0 20px 0  #004d00;
+}
+
+.update-testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      margin-right: 250px;
+      margin-left: 250px;
+}
+
 .testbox {
       display: flex;
       justify-content: center;
