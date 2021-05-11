@@ -92,7 +92,7 @@
           </div>
           <?php
           //SQL updates
-            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
               $sql = "SELECT total_amount_of_money 
               FROM Visitor
               WHERE '$visitor_id' = Visitor.visitor_id";
