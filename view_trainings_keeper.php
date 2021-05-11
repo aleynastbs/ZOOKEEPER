@@ -54,7 +54,7 @@
                 echo "<p>&nbsp;</p>";
                 echo "<p>&nbsp;</p>
                 <div class='update-margin'>
-                <input id='date' type='date' style='width:15%' name='date' required/><i class='fas fa-calendar-alt'></i>
+                <input id='date' type='date' style='width:15%' name='date'/><i class='fas fa-calendar-alt'></i>
                 <input type='submit' style='width:15%' name='update' class='btn btn-outline-success' id='update' value='Update'/></div>
                 <div class='select-margin'>
                 <input type='submit' style='width:15%' name='remove' class='btn btn-outline-success' id='remove' value='Remove'/></div></form>";
