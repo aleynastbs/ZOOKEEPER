@@ -353,26 +353,29 @@ public class database{
                     "('inciA', 'ia@hotmail.com', 'İnci Aksoy', 'ankara', 'student', DATE '1998-12-26', 'abcd')," +
                     "('ozgeK', 'ok@hotmail.com', 'Özge Kılınç', 'ankara', 'student', DATE '1998-12-26', 'abcd')," +
                     "('bensuO', 'bo@hotmail.com', 'Bensu Özbilgin', 'ankara', 'student', DATE '1998-12-26', 'abcd')," +
+                    "('baykamS', 'bs@hotmail.com', 'Baykam Say', 'ankara', 'student', DATE '1998-12-26', 'abcd')," +
                     "('batuK', 'bk@hotmail.com', 'Batuhan Koçak', 'ankara', 'student', DATE '2000-02-20', 'abcd');");
 
             stmt.executeUpdate("INSERT INTO Visitor VALUES" +
                     "(1, DATE '2021-05-10', 500)," +
-                    "(8, DATE '2021-04-16', 700);");
+                    "(9, DATE '2021-04-16', 700);");
             stmt.executeUpdate("INSERT INTO Employee VALUES" +
                     "(2, 1000, DATE '2020-02-10')," +
                     "(3, 1000, DATE '2020-02-10')," +
                     "(4, 1000, DATE '2020-02-10')," +
                     "(5, 1000, DATE '2020-02-10')," +
                     "(6, 1000, DATE '2020-02-10')," +
-                    "(7, 1000, DATE '2020-02-10');");
+                    "(7, 1000, DATE '2020-02-10')," +
+                    "(8, 1000, DATE '2020-02-10');");
             stmt.executeUpdate("INSERT INTO Keeper VALUES" +
                     "(2)," +
                     "(5)," +
-                    "(6);");
+                    "(8);");
             stmt.executeUpdate("INSERT INTO Veterinarian VALUES" +
                     "(3, 'dog');");
             stmt.executeUpdate("INSERT INTO Coordinator VALUES" +
-                    "(4),"+
+                    "(4)," +
+                    "(6)," +
                     "(7);");
             stmt.executeUpdate("INSERT INTO Comment(content, like_amount, dislike_amount) VALUES" +
                     "('good', 10, 5);");
@@ -384,34 +387,70 @@ public class database{
                     "('event1', 'fun', 100, 20, DATE '2022-05-08', '10:00', '11:00')," +
                     "('event2', 'not fun', 50, 30, DATE '2022-07-08', '10:00', '11:00')," +
                     "('event3', 'so fun', 150, 40, DATE '2022-06-08', '10:00', '11:00')," +
-                    "('event3', 'so fun', 150, 40, DATE '2022-06-08', '10:00', '11:00')," +
-                    "('event4', 'not fun', 50, 30, DATE '2024-07-03', '10:00', '11:00');");
+                    "('event4', 'so fun', 150, 40, DATE '2022-06-08', '10:00', '11:00')," +
+                    "('event5', 'so fun', 150, 40, DATE '2022-06-08', '10:00', '11:00')," +
+                    "('event6', 'so fun', 150, 40, DATE '2022-06-08', '10:00', '11:00')," +
+                    "('event7', 'so fun', 150, 40, DATE '2022-06-08', '10:00', '11:00')," +
+                    "('event8', 'not fun', 50, 30, DATE '2024-07-03', '10:00', '11:00');");
             stmt.executeUpdate("INSERT INTO Group_Tour VALUES" +
-                    "(1);");
+                    "(1)," +
+                    "(2)," +
+                    "(3);");
             stmt.executeUpdate("INSERT INTO Educational_Program VALUES" +
-                    "(2, 'science');");
+                    "(4, 'science')," +
+                    "(5, 'science')," +
+                    "(6, 'science');");
             stmt.executeUpdate("INSERT INTO Conservation_Organization VALUES" +
-                    "(3, 10000, 5000, 'children');");
+                    "(7, 10000, 5000, 'children')," +
+                    "(8, 10000, 5000, 'children');");
             stmt.executeUpdate("INSERT INTO Comments VALUES" +
                     "(1, 1, 1);");
             stmt.executeUpdate("INSERT INTO Attends VALUES" +
                     "(1,1,200);");
             stmt.executeUpdate("INSERT INTO Creates_Event VALUES" +
-                    "(4,1);");
+                    "(4,1)," +
+                    "(4,2)," +
+                    "(4,3)," +
+                    "(6,4)," +
+                    "(6,5)," +
+                    "(6,6)," +
+                    "(7,7)," +
+                    "(7,8);");
             stmt.executeUpdate("INSERT INTO Donates VALUES" +
-                    "(1,3,100);");
+                    "(1,7,100);");
             stmt.executeUpdate("INSERT INTO Complaint_Form(form_content) VALUES" +
                     "('tours are boring');");
             stmt.executeUpdate("INSERT INTO RespondsTo VALUES" +
                     "(1,4,'being evaluated');");
             stmt.executeUpdate("INSERT INTO Invites VALUES" +
-                    "(3,2,4,'ACCEPTED');");
+                    "(3,4,4,'ACCEPTED');");
             stmt.executeUpdate("INSERT INTO Animal(animal_species, animal_name) VALUES" +
                     "('lion', 'berk')," +
+                    "('lion', 'lara')," +
+                    "('lion', 'melih')," +
+                    "('lion', 'özge')," +
+                    "('lion', 'bensu')," +
+                    "('giraffe', 'berk')," +
+                    "('giraffe', 'lara')," +
+                    "('giraffe', 'melih')," +
+                    "('eagle', 'melih')," +
+                    "('eagle', 'özge')," +
+                    "('eagle', 'bensu')," +
                     "('monkey', 'lara')," +
+                    "('monkey', 'aleyna')," +
+                    "('monkey', 'melih')," +
                     "('snake', 'melih')," +
+                    "('snake', 'melih2')," +
+                    "('snake', 'melih3')," +
                     "('zebra', 'özge')," +
+                    "('zebra', 'aleyna')," +
+                    "('zebra', 'berk')," +
+                    "('zebra', 'batu')," +
                     "('horse', 'bensu')," +
+                    "('horse', 'berk')," +
+                    "('horse', 'batu')," +
+                    "('horse', 'baykam')," +
+                    "('alligator', 'melih')," +
                     "('alligator', 'aleyna');");
             stmt.executeUpdate("INSERT INTO Food(food_name, food_qty) VALUES" +
                     "('potato', 100);");
@@ -419,12 +458,92 @@ public class database{
                     "(2,1,'move around', DATE '2021-05-15')," +
                     "(2,1,'turn', DATE '2021-05-15')," +
                     "(2,1,'sit', DATE '2021-05-15')," +
-                    "(2,1,'get shot', DATE '2021-05-15');");
+                    "(2,2,'move around', DATE '2021-05-15')," +
+                    "(2,2,'turn', DATE '2021-05-15')," +
+                    "(2,2,'sit', DATE '2021-05-15')," +
+                    "(2,3,'move around', DATE '2021-05-15')," +
+                    "(2,3,'turn', DATE '2021-05-15')," +
+                    "(2,3,'sit', DATE '2021-05-15')," +
+                    "(2,4,'move around', DATE '2021-05-15')," +
+                    "(2,4,'turn', DATE '2021-05-15')," +
+                    "(2,4,'sit', DATE '2021-05-15')," +
+                    "(2,5,'move around', DATE '2021-05-15')," +
+                    "(2,5,'turn', DATE '2021-05-15')," +
+                    "(2,5,'sit', DATE '2021-05-15')," +
+                    "(2,6,'move around', DATE '2021-05-15')," +
+                    "(2,6,'turn', DATE '2021-05-15')," +
+                    "(2,6,'sit', DATE '2021-05-15')," +
+                    "(2,7,'move around', DATE '2021-05-15')," +
+                    "(2,7,'turn', DATE '2021-05-15')," +
+                    "(2,7,'sit', DATE '2021-05-15')," +
+                    "(2,8,'move around', DATE '2021-05-15')," +
+                    "(2,8,'turn', DATE '2021-05-15')," +
+                    "(2,8,'sit', DATE '2021-05-15')," +
+                    "(2,9,'move around', DATE '2021-05-15')," +
+                    "(2,9,'turn', DATE '2021-05-15')," +
+                    "(2,9,'sit', DATE '2021-05-15')," +
+                    "(2,10,'move around', DATE '2021-05-15')," +
+                    "(2,10,'turn', DATE '2021-05-15')," +
+                    "(2,10,'sit', DATE '2021-05-15')," +
+                    "(2,11,'move around', DATE '2021-05-15')," +
+                    "(2,11,'turn', DATE '2021-05-15')," +
+                    "(2,11,'sit', DATE '2021-05-15')," +
+                    "(5,12,'move around', DATE '2021-05-15')," +
+                    "(5,12,'turn', DATE '2021-05-15')," +
+                    "(5,12,'sit', DATE '2021-05-15')," +
+                    "(5,13,'move around', DATE '2021-05-15')," +
+                    "(5,13,'turn', DATE '2021-05-15')," +
+                    "(5,13,'sit', DATE '2021-05-15')," +
+                    "(5,14,'move around', DATE '2021-05-15')," +
+                    "(5,14,'turn', DATE '2021-05-15')," +
+                    "(5,14,'sit', DATE '2021-05-15')," +
+                    "(5,15,'move around', DATE '2021-05-15')," +
+                    "(5,15,'turn', DATE '2021-05-15')," +
+                    "(5,15,'sit', DATE '2021-05-15')," +
+                    "(5,16,'move around', DATE '2021-05-15')," +
+                    "(5,16,'turn', DATE '2021-05-15')," +
+                    "(5,16,'sit', DATE '2021-05-15')," +
+                    "(5,17,'move around', DATE '2021-05-15')," +
+                    "(5,17,'turn', DATE '2021-05-15')," +
+                    "(5,17,'sit', DATE '2021-05-15')," +
+                    "(5,18,'move around', DATE '2021-05-15')," +
+                    "(5,18,'turn', DATE '2021-05-15')," +
+                    "(5,18,'sit', DATE '2021-05-15')," +
+                    "(5,19,'move around', DATE '2021-05-15')," +
+                    "(5,19,'turn', DATE '2021-05-15')," +
+                    "(5,19,'sit', DATE '2021-05-15')," +
+                    "(5,20,'move around', DATE '2021-05-15')," +
+                    "(5,20,'turn', DATE '2021-05-15')," +
+                    "(5,20,'sit', DATE '2021-05-15')," +
+                    "(5,21,'move around', DATE '2021-05-15')," +
+                    "(5,21,'turn', DATE '2021-05-15')," +
+                    "(5,21,'sit', DATE '2021-05-15')," +
+                    "(8,22,'move around', DATE '2021-05-15')," +
+                    "(8,22,'turn', DATE '2021-05-15')," +
+                    "(8,22,'sit', DATE '2021-05-15')," +
+                    "(8,23,'move around', DATE '2021-05-15')," +
+                    "(8,23,'turn', DATE '2021-05-15')," +
+                    "(8,23,'sit', DATE '2021-05-15')," +
+                    "(8,24,'move around', DATE '2021-05-15')," +
+                    "(8,24,'turn', DATE '2021-05-15')," +
+                    "(8,24,'sit', DATE '2021-05-15')," +
+                    "(8,25,'move around', DATE '2021-05-15')," +
+                    "(8,25,'turn', DATE '2021-05-15')," +
+                    "(8,25,'sit', DATE '2021-05-15')," +
+                    "(8,26,'move around', DATE '2021-05-15')," +
+                    "(8,26,'turn', DATE '2021-05-15')," +
+                    "(8,26,'sit', DATE '2021-05-15')," +
+                    "(8,27,'move around', DATE '2021-05-15')," +
+                    "(8,27,'turn', DATE '2021-05-15')," +
+                    "(8,27,'sit', DATE '2021-05-15');");
             stmt.executeUpdate("INSERT INTO Cage(cage_size, cage_type) VALUES" +
                     "(50, 'circle'),"+
                     "(75, 'square'),"+
                     "(61, 'circle'),"+
                     "(63, 'den'),"+
+                    "(615, 'circle'),"+
+                    "(643, 'den'),"+
+                    "(654, 'aquarium'),"+
                     "(654, 'aquarium'),"+
                     "(632, 'pyramid');");
             stmt.executeUpdate("INSERT INTO Regularizes VALUES" +
@@ -433,11 +552,32 @@ public class database{
                     "(2,3,1,'broken leg', DATE '2021-05-17', 'ACCEPTED');");
             stmt.executeUpdate("INSERT INTO Belongs_to VALUES" +
                     "(1,1)," +
-                    "(2,2)," +
-                    "(3,3)," +
-                    "(4,4)," +
-                    "(5,5)," +
-                    "(6,6);");
+                    "(2,1)," +
+                    "(3,1)," +
+                    "(4,1)," +
+                    "(5,1)," +
+                    "(6,2)," +
+                    "(7,2)," +
+                    "(8,2)," +
+                    "(9,3)," +
+                    "(10,3)," +
+                    "(11,3)," +
+                    "(12,4)," +
+                    "(13,4)," +
+                    "(14,4)," +
+                    "(15,5)," +
+                    "(16,5)," +
+                    "(17,5)," +
+                    "(18,6)," +
+                    "(19,6)," +
+                    "(20,6)," +
+                    "(21,6)," +
+                    "(22,7)," +
+                    "(23,7)," +
+                    "(24,7)," +
+                    "(25,7)," +
+                    "(26,8)," +
+                    "(27,9);");
             stmt.executeUpdate("INSERT INTO Area(area_name) VALUES" +
                     "('Entrance')," +
                     "('Center');");

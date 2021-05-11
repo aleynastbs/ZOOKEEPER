@@ -45,9 +45,10 @@
                         <th style='text-align:center'>Species In Cage</th>
                       </tr>";
                       
-                      $sql1 = "SELECT Cage.cage_id, cage_size, cage_type, animal_species FROM Cage, Belongs_to, Animal 
-                      WHERE Cage.cage_id = Belongs_to.cage_id and Belongs_to.animal_id = Animal.animal_id 
-                                                              and Cage.cage_id not in (SELECT cage_id FROM Assigns)";
+                      $sql1 = "SELECT Cage.cage_id, cage_size, cage_type, animal_species, Animal.animal_id 
+                        FROM ((Cage NATURAL JOIN Belongs_to)NATURAL JOIN Animal)
+                        WHERE cage_id not in (SELECT cage_id FROM Assigns)
+                        GROUP BY cage_id";
                         $query = mysqli_query($mysqli,$sql1);
                         while($result = $query -> fetch_assoc()) {
                             echo '<tr><td>
