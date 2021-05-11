@@ -350,10 +350,12 @@ public class database{
                     "('berkT', 'bt@hotmail.com', 'Berk Takıt', 'ankara', 'student', DATE '1998-12-26', 'abcd')," +
                     "('inciA', 'ia@hotmail.com', 'İnci Aksoy', 'ankara', 'student', DATE '1998-12-26', 'abcd')," +
                     "('ozgeK', 'ok@hotmail.com', 'Özge Kılınç', 'ankara', 'student', DATE '1998-12-26', 'abcd')," +
-                    "('bensuO', 'bo@hotmail.com', 'Bensu Özbilgin', 'ankara', 'student', DATE '1998-12-26', 'abcd');");
+                    "('bensuO', 'bo@hotmail.com', 'Bensu Özbilgin', 'ankara', 'student', DATE '1998-12-26', 'abcd')," +
+                    "('batuK', 'bk@hotmail.com', 'Batuhan Koçak', 'ankara', 'student', DATE '2000-02-20', 'abcd');");
 
             stmt.executeUpdate("INSERT INTO Visitor VALUES" +
-                    "(1, DATE '2021-05-10');");
+                    "(1, DATE '2021-05-10', 500)," +
+                    "(8, DATE '2021-04-16', 700);");
             stmt.executeUpdate("INSERT INTO Employee VALUES" +
                     "(2, 1000, DATE '2020-02-10')," +
                     "(3, 1000, DATE '2020-02-10')," +
@@ -440,7 +442,9 @@ public class database{
             stmt.executeUpdate("INSERT INTO Item(item_name, item_stock, item_price) VALUES" +
                     "('key chain', 10, 5)," +
                     "('magnet', 15, 10)," +
-                    "('book seperator', 20, 3);");
+                    "('book seperator', 20, 3)," + 
+                    "('leo figure', 5, 15)," +
+                    "('zebra figure', 8, 10);");
             stmt.executeUpdate("INSERT INTO Is_In_C VALUES" +
                     "(1,1);");
             stmt.executeUpdate("INSERT INTO Is_In_S VALUES" +
@@ -449,7 +453,9 @@ public class database{
             stmt.executeUpdate("INSERT INTO Sells VALUES" +
                     "(1,1)," +
                     "(1,2)," +
-                    "(1,3);");
+                    "(1,3)," +
+                    "(2,4)," +
+                    "(2,5);");
             stmt.executeUpdate("INSERT INTO Buys VALUES" +
                     "(1,1,1);");
             stmt.executeUpdate("INSERT INTO Assigns VALUES" +
