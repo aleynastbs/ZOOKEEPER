@@ -41,10 +41,12 @@
         #$visitor_id = "SELECT user_id FROM User WHERE username = '$login'";
         #$visitor_id = mysqli_query($mysqli,$visitor_id);
         #$visitor_id = $visitor_id->fetch_assoc()['user_id'];
-        $sql = "SELECT shop_name, shop_description, area_name
+        $sql = "CREATE VIEW animal_view (name, description, area_name) AS
+                SELECT shop_name, shop_description, area_name
                 FROM Shop NATURAL JOIN Is_In_S NATURAL JOIN Area";
-        $shops = mysqli_query($mysqli,$sql);
-       
+        mysqli_query($mysqli,$sql);
+        $sql2 = "SELECT * FROM animal_view";
+        $shops = mysqli_query($mysqli,$sql2);
         ?>
         <table class="table table-hover" data-link="row">
             <thead>
@@ -61,14 +63,14 @@
             }
             else{ 
               while($row = $shops->fetch_assoc()) {
-              $link = $row["shop_name"].".php";
+              $link = $row["name"].".php";
               $link = strtolower($link);
               echo 
               '<tbody><tr>
                   <th scope="row"><a href=',$link, ' class="btn btn-outline-success btn-sm" role="button">Go</a></th>
-                  <td>', $row["shop_name"], '</td>
+                  <td>', $row["name"], '</td>
                   <td>',$row["area_name"],'</td>
-                  <td>',$row["shop_description"],'</td>
+                  <td>',$row["description"],'</td>
                 </tr></tbody>';
               }
             }
