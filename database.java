@@ -91,6 +91,7 @@ public class database{
             stmt.executeUpdate("CREATE TABLE Visitor(" +
                     "visitor_id INT," +
                     "last_visit DATE," +
+                    "total_amount_of_money INT," +
                     "PRIMARY KEY (visitor_id)," +
                     "CONSTRAINT FOREIGN KEY (visitor_id) REFERENCES User(user_id))" +
                     "ENGINE=innodb");
@@ -241,11 +242,12 @@ public class database{
                     "PRIMARY KEY (cage_id))" +
                     "ENGINE=innodb");
             stmt.executeUpdate("CREATE TABLE Schedules(" +
+                    "training_id INT AUTO_INCREMENT," +
                     "keeper_id INT," +
                     "animal_id INT," +
                     "training_description VARCHAR(200)," +
                     "training_date DATE," +
-                    "PRIMARY KEY (keeper_id, animal_id)," +
+                    "PRIMARY KEY (training_id, keeper_id, animal_id)," +
                     "FOREIGN KEY (keeper_id) REFERENCES Keeper(keeper_id)," +
                     "FOREIGN KEY (animal_id) REFERENCES Animal(animal_id))" +
                     "ENGINE=innodb");
@@ -375,7 +377,7 @@ public class database{
             stmt.executeUpdate("INSERT INTO Comment(content, like_amount, dislike_amount) VALUES" +
                     "('good', 10, 5);");
             stmt.executeUpdate("INSERT INTO Membership(expiration_date, price) VALUES" +
-                    "(DATE '2022-05-08', 100);");
+                    "(DATE '2022-05-08', 200);");
             stmt.executeUpdate("INSERT INTO Has VALUES" +
                     "(1, 1, 'gold')");
             stmt.executeUpdate("INSERT INTO Event(event_name, description, max_capacity, num_of_participants, date, start_at, end_at) VALUES" +
@@ -413,8 +415,11 @@ public class database{
                     "('alligator', 'aleyna');");
             stmt.executeUpdate("INSERT INTO Food(food_name, food_qty) VALUES" +
                     "('potato', 100);");
-            stmt.executeUpdate("INSERT INTO Schedules VALUES" +
-                    "(2,1,'move around', DATE '2021-05-15');");
+            stmt.executeUpdate("INSERT INTO Schedules (keeper_id, animal_id, training_description, training_date) VALUES" +
+                    "(2,1,'move around', DATE '2021-05-15')," +
+                    "(2,1,'turn', DATE '2021-05-15')," +
+                    "(2,1,'sit', DATE '2021-05-15')," +
+                    "(2,1,'get shot', DATE '2021-05-15');");
             stmt.executeUpdate("INSERT INTO Cage(cage_size, cage_type) VALUES" +
                     "(50, 'circle'),"+
                     "(75, 'square'),"+
@@ -442,7 +447,7 @@ public class database{
             stmt.executeUpdate("INSERT INTO Item(item_name, item_stock, item_price) VALUES" +
                     "('key chain', 10, 5)," +
                     "('magnet', 15, 10)," +
-                    "('book seperator', 20, 3)," + 
+                    "('book seperator', 20, 3)," +
                     "('leo figure', 5, 15)," +
                     "('zebra figure', 8, 10);");
             stmt.executeUpdate("INSERT INTO Is_In_C VALUES" +
