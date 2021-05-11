@@ -107,7 +107,14 @@ body {
         margin-left: 47%;
   }
   
+  .select-margin {
+        margin-left: 46%;
+  }
   
+  .update-margin {
+        margin-left: 41%;
+  }
+
   .table-form {
         width: 100%;
         background: #fff;
