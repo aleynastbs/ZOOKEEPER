@@ -64,14 +64,16 @@
               </div>
               <?php 
               if($check == ""){
-                echo '<form class = "mem-form" method = "get"><input class="list-group-item list-group-item-action" name ="silver" type="submit" value="Start a Silver Membership">
-                <input class="list-group-item list-group-item-action" name ="gold" type="submit" value="Start a Gold Membership"></form>
-                <input class="list-group-item list-group-item-action disabled" type="submit" value ="Cancel My Membership">';
+                
+                echo "<input class='list-group-item list-group-item-action disabled' type='submit' value ='Cancel My Membership'>";
+                echo "<form class = 'mem-form' method = 'get'><input class='list-group-item list-group-item-action' name ='gold' type='submit' value='Start a Gold Membership'></form>";
+                echo "<form class = 'mem-form' method = 'get'><input class='list-group-item list-group-item-action' name ='silver' type='submit' value='Start a Silver Membership'></form><p>&nbsp;</p>";
               }else{
                 echo '<input class="list-group-item list-group-item-action disabled" type="submit" value ="Start a Silver Membership">
                 <input class="list-group-item list-group-item-action disabled" type="submit" value="Start a Gold Membership">
-                <form class = "mem-form" method = "get"><input class="list-group-item list-group-item-action" name ="cancel" type="submit" value="Cancel My Membership"></form>';
+                <form class = "mem-form" method = "get"><input class="list-group-item list-group-item-action" name ="cancel" type="submit" value="Cancel My Membership"></form><p>&nbsp;</p>';
               }
+              echo '<div class= "funds-margin"><form method = "get"><input class="btn btn-outline-success" type="submit" name = "funds" value="See my Funds"></form></div>';
               if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $sql = "SELECT total_amount_of_money 
                 FROM Visitor
@@ -79,6 +81,13 @@
                 $budget  = mysqli_query($mysqli,$sql)->fetch_assoc()["total_amount_of_money"];
                 $curr_date = date("Y-m-d");
                 $expiration_date = date('Y-m-d', strtotime($curr_date. ' + 1 year')); //curr year + 1 year
+                if(isset($_GET['funds'])){
+                    echo "<script>
+                    var budget = $budget;
+                    alert('Your Total Amount of Money: ' + budget);
+                    window.location.href='membership.php';
+                    </script>";
+                }
                 if(isset($_GET["gold"])){
                     if($budget > 200){
                         $sql = "INSERT INTO Membership (expiration_date, price) 
@@ -94,6 +103,12 @@
                         echo "<script>
                         var budget = $budget - 100;
                         alert('Your Remaining Money: ' + budget);
+                        window.location.href='membership.php';
+                        </script>";
+                    }
+                    else{
+                        echo "<script>
+                        alert('Your Total Amount of Money is Not Enough');
                         window.location.href='membership.php';
                         </script>";
                     }
@@ -115,6 +130,12 @@
                         window.location.href='membership.php';
                         </script>";
                     }
+                    else{
+                        echo "<script>
+                        alert('Your Total Amount of Money is Not Enough');
+                        window.location.href='membership.php';
+                        </script>";
+                    }
                 }else if(isset($_GET["cancel"])){
                     echo "a";
                     $sql = "DELETE FROM Has 
@@ -130,11 +151,9 @@
                     </script>";
                 }
             }
-            
-
             ?>
           </div>
-
+        
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
         
