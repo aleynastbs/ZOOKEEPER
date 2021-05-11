@@ -39,10 +39,10 @@
                 <td></td>
                 </tr>";
                 $keep_id = 2;
-                $sql1 = "SELECT Cage.cage_id, cage_size, cage_type, animal_species, Animal.animal_id
-                        FROM Cage, Belongs_to, Animal 
-                        WHERE Cage.cage_id = Belongs_to.cage_id and Belongs_to.animal_id = Animal.animal_id 
-                            and ('$keep_id', Cage.cage_id) in (SELECT keeper_id, cage_id FROM Assigns)";
+                $sql1 = "SELECT cage_id, cage_size, cage_type, animal_species
+                        FROM ((Cage NATURAL JOIN Belongs_to)NATURAL JOIN Animal)
+                        WHERE ($keep_id, cage_id) in (SELECT keeper_id, cage_id FROM Assigns)
+                        GROUP BY cage_id";
                 $query = mysqli_query($mysqli,$sql1);
                 while($result = $query -> fetch_assoc()) {
                     echo "<tr><td style='text-align:center'>" . $result['cage_id'] . 

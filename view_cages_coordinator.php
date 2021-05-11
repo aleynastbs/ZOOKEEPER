@@ -44,10 +44,10 @@
                 <td></td>
                 </tr>";
                 $co_id = 4;
-                $sql1 = "SELECT Cage.cage_id, cage_size, cage_type, animal_species, Animal.animal_id, Keeper.keeper_id
-                        FROM Cage, Belongs_to, Animal, Keeper 
-                        WHERE Cage.cage_id = Belongs_to.cage_id and Belongs_to.animal_id = Animal.animal_id 
-                            and ('$co_id', Cage.cage_id, Keeper.keeper_id) in (SELECT coordinator_id, cage_id, keeper_id FROM Assigns)";
+                $sql1 = "SELECT cage_id, cage_size, cage_type, animal_species, animal_id, keeper_id
+                        FROM ((Cage NATURAL JOIN Belongs_to)NATURAL JOIN Animal), Keeper 
+                        WHERE ('$co_id', cage_id, Keeper.keeper_id) in (SELECT coordinator_id, cage_id, keeper_id FROM Assigns)
+                        GROUP BY cage_id";
                 $query = mysqli_query($mysqli,$sql1);
                 while($result = $query -> fetch_assoc()) {
                     echo "<tr><td style='text-align:center'>" . $result['cage_id'] . 
@@ -79,10 +79,11 @@
                 <th style='text-align:center'>Animal Species</th>
                 <td></td>
                 </tr>";
-                $sql1 = "SELECT Cage.cage_id, cage_size, cage_type, animal_species, Animal.animal_id 
-                                FROM Cage, Belongs_to, Animal 
-                                WHERE Cage.cage_id = Belongs_to.cage_id and Belongs_to.animal_id = Animal.animal_id 
-                                                                        and Cage.cage_id not in (SELECT cage_id FROM Assigns)";
+                $sql1 = "SELECT cage_id, cage_size, cage_type, animal_species, animal_id 
+                        FROM ((Cage NATURAL JOIN Belongs_to)NATURAL JOIN Animal)
+                        WHERE cage_id not in (SELECT cage_id FROM Assigns)
+                        GROUP BY cage_id";
+                        
                 $query = mysqli_query($mysqli,$sql1);
                 while($result = $query -> fetch_assoc()) {
                     echo "<tr><td style='text-align:center'>" . $result['cage_id'] . 
