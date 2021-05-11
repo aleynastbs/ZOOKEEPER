@@ -51,6 +51,7 @@
                 WHERE $shop_id = S.shop_id AND S.item_id = I.item_id";
         $items = mysqli_query($mysqli,$sql);
         $item_ids = [];
+        $item_prices = [];
         ?>
 
         <table class="table table-hover" data-link="row">
@@ -78,6 +79,7 @@
                 </tr></tbody>';
                 $count++;
                 array_push($item_ids, $row["item_id"]);
+                array_push($item_prices, $row["item_price"]);
               }
             }
           ?>  
@@ -85,27 +87,59 @@
           <div class="text-center"><form method = "get">
             <a class="btn btn-outline-success" href="shops.php" role="button">Back to the Shops</a>
             <input class="btn btn-outline-success" type="submit" name = 'buy' value="Buy Items" >
+            <input class="btn btn-outline-success" type="submit" name = 'funds' value="See my Funds">
             </form>
           </div>
           <?php
           //SQL updates
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-              if(isset($_GET['buy'])){
-                for($i=0; $i < $count; $i++){
-                  $amount = $_GET[$item_ids[$i]];
-                  $sql = "UPDATE Item 
-                          SET item_stock = item_stock - '$amount'
-                          WHERE item_id = '$item_ids[$i]'";
-                  mysqli_query($mysqli,$sql); 
-                  if($amount > 0){
-                    $sql2 = "INSERT INTO Buys VALUES ('$item_ids[$i]', '$visitor_id', '$amount')";
-                    mysqli_query($mysqli,$sql2);
-                  } 
-                }
+              $sql = "SELECT total_amount_of_money 
+              FROM Visitor
+              WHERE '$visitor_id' = Visitor.visitor_id";
+              $budget  = mysqli_query($mysqli,$sql)->fetch_assoc()["total_amount_of_money"];
+              if(isset($_GET['funds'])){
                 echo "<script>
-                alert('Transaction is successfull');
+                var budget = $budget;
+                alert('Your Total Amount of Money: ' + budget);
                 window.location.href='gift_shop.php';
                 </script>";
+              }
+              if(isset($_GET['buy'])){
+                $total_price = 0;
+                for($i=0; $i < $count; $i++){
+                  $amount = $_GET[$item_ids[$i]];
+                  $total_price += (int)$item_prices[$i] * (int)$amount;  
+                }
+                if($total_price > $budget ){
+                  echo "<script>
+                  alert('Your Total Amount of Money is Not Enough');
+                  window.location.href='gift_shop.php';
+                  </script>";
+                }
+                else{
+                  for($i=0; $i < $count; $i++){
+                    $amount = $_GET[$item_ids[$i]];
+                    $sql = "UPDATE Item 
+                            SET item_stock = item_stock - '$amount'
+                            WHERE item_id = '$item_ids[$i]'";
+                    mysqli_query($mysqli,$sql); 
+                    $sql = "UPDATE Visitor
+                            SET total_amount_of_money = total_amount_of_money - '$total_price'
+                            WHERE '$visitor_id' = Visitor.visitor_id";
+                    mysqli_query($mysqli,$sql); 
+                    if($amount > 0){
+                      $sql2 = "INSERT INTO Buys VALUES ('$item_ids[$i]', '$visitor_id', '$amount')";
+                      mysqli_query($mysqli,$sql2);
+                    } 
+                  }
+                  $remaining = $budget - $total_price;
+                  echo "<script>
+                  var remaining = $remaining;
+                  alert('Transaction is successful, Remaining Money: ' + remaining);
+                  window.location.href='gift_shop.php';
+                  </script>";
+                }
+                
               }
             }
           ?>

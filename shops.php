@@ -28,7 +28,7 @@
                         <a class="nav-link" href="#">Animals</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="membership.html">Membership</a>
+                        <a class="nav-link" href="membership.php">Membership</a>
                     </li>
                 </ul>
             </div>
