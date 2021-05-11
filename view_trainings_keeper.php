@@ -53,7 +53,7 @@
                 echo "</table> ";
                 echo "<p>&nbsp;</p>";
                 echo "<p>&nbsp;</p>
-                <div class='select-margin'>
+                <div class='update-margin'>
                 <input id='date' type='date' style='width:15%' name='date' required/><i class='fas fa-calendar-alt'></i>
                 <input type='submit' style='width:15%' name='update' class='btn btn-outline-success' id='update' value='Update'/></div>
                 <div class='select-margin'>
@@ -62,9 +62,14 @@
                 if (isset($_GET['update']))
                 {
                     if(!empty($_GET['flexRadioDefault1'])){
-                        $val = $_GET['flexRadioDefault1'];
-                        
+                        if(!empty($_GET['date'])){
+                            $date = $_GET['date'];
+                            $val = $_GET['flexRadioDefault1'];
+                            $sql1 = "UPDATE Schedules SET training_date = '$date' WHERE training_id = $val";
+                            mysqli_query($mysqli,$sql1);
+                        }
                     }
+                    echo "<script>window.location = 'view_trainings_keeper.php';</script>";
                 } 
                 if (isset($_GET['remove']))
                 {
