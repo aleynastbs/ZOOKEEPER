@@ -52,6 +52,8 @@
         $items = mysqli_query($mysqli,$sql);
         $item_ids = [];
         $item_prices = [];
+        $item_names = [];
+        $item_stocks = [];
         ?>
 
         <table class="table table-hover" data-link="row">
@@ -80,6 +82,8 @@
                 $count++;
                 array_push($item_ids, $row["item_id"]);
                 array_push($item_prices, $row["item_price"]);
+                array_push($item_names, $row["item_name"]);
+                array_push($item_stocks, $row["item_stock"]);
               }
             }
           ?>  
@@ -123,28 +127,44 @@
                   </script>";
                 }
                 else{
+                  $check = 0;
+                  $exceed = "These could not be bought: ";
                   for($i=0; $i < $count; $i++){
                     $amount = $_GET[$item_ids[$i]];
-                    $sql = "UPDATE Item 
-                            SET item_stock = item_stock - '$amount'
-                            WHERE item_id = '$item_ids[$i]'";
-                    mysqli_query($mysqli,$sql); 
-                    $sql = "UPDATE Visitor
-                            SET total_amount_of_money = total_amount_of_money - '$total_price'
-                            WHERE '$visitor_id' = Visitor.visitor_id";
-                    mysqli_query($mysqli,$sql); 
-                    if($amount > 0){
-                      $sql2 = "INSERT INTO Buys VALUES ('$item_ids[$i]', '$visitor_id', '$amount')";
-                      mysqli_query($mysqli,$sql2);
+                    if($amount <= $item_stocks[$i]){
+                      $sql = "UPDATE Item 
+                              SET item_stock = item_stock - '$amount'
+                              WHERE item_id = '$item_ids[$i]'";
+                      mysqli_query($mysqli,$sql); 
+                      $sql = "UPDATE Visitor
+                              SET total_amount_of_money = total_amount_of_money - '$total_price'
+                              WHERE '$visitor_id' = Visitor.visitor_id";
+                      mysqli_query($mysqli,$sql); 
+                      if($amount > 0){
+                        $sql2 = "INSERT INTO Buys VALUES ('$item_ids[$i]', '$visitor_id', '$amount')";
+                        mysqli_query($mysqli,$sql2);
+                      }
+                    }else{
+                      $exceed = $exceed . $item_names[$i] . " ";
+                      $check = 1;
                     } 
                   }
                   if($total_amount > 0){
                     $remaining = $budget - $total_price;
-                    echo "<script>
-                    var remaining = $remaining;
-                    alert('Transaction is successful, Remaining Money: ' + remaining);
-                    window.location.href='toy_shop.php';
-                    </script>";
+                    if($check == 1){
+                      echo "<script>
+                      var remaining = $remaining;
+                      var exceed = '$exceed';
+                      alert('Transaction is partially successful, Remaining Money: ' + remaining + ', ' + exceed);
+                      
+                      </script>";
+                    }else{
+                      echo "<script>
+                      var remaining = $remaining;
+                      alert('Transaction is successful, Remaining Money: ' + remaining);
+                      window.location.href='toy_shop.php';
+                      </script>";
+                    }
                   }else{
                     echo "<script>
                     alert('You did not select an item');
