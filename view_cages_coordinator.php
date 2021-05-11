@@ -62,7 +62,7 @@
                 echo "<p>&nbsp;</p>
                 <p>&nbsp;</p>
                 <div class='text-center'>
-                  <a href='assign_cages.html' class='btn btn-outline-success btn' role='button'>Assign Cage</a>
+                  <a href='assign_cages_coordinator.php' class='btn btn-outline-success btn' role='button'>Assign Cage</a>
                 </div> 
                 <p>&nbsp;</p>
                 <div class='text-center'>
@@ -96,14 +96,14 @@
                 echo "<p>&nbsp;</p>
                 <p>&nbsp;</p>
                 <div class='text-center'>
-                  <a href='assign_cages.html' class='btn btn-outline-success btn' role='button'>Assign Cage</a>
+                  <a href='assign_cages_coordinator.php' class='btn btn-outline-success btn' role='button'>Assign Cage</a>
                 </div> 
                 <form class='cage-form' method='get'>
                 <input type='submit'  class='btn btn-outline-success' value='View Cages Assigned By You' name='view_my_cage'/>
                 </form>";
             }
         }
-        ?>
+            ?>
     
 </body>
 </html>
