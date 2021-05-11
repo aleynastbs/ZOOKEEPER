@@ -103,6 +103,16 @@ body {
         box-shadow: 0 0 0 0  #ffffff;
   }
   
+  .confirm-margin {
+        margin-left: 47%;
+  }
+  
+  
+  .table-form {
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 0 0 0  #ffffff;
+  }
   
   .update-form {
         width: 50%;

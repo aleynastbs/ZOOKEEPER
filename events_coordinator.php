@@ -54,7 +54,7 @@
         <p>&nbsp;</p>
         <p>&nbsp;</p>
         <div class="text-center">
-          <a href="create_event.html" class="btn btn-outline-success btn-lg" role="button">Create A New Event</a>
+          <a href="create_event.php" class="btn btn-outline-success btn-lg" role="button">Create A New Event</a>
         </div> 
     </body>
 </html>
