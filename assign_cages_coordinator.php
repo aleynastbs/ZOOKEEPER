@@ -92,13 +92,17 @@
             $co_id = 4;
             if (isset($_GET['confirm2']))
             {
+                if(!empty($_GET['flexRadioDefault1'])){
                 $val = $_GET['flexRadioDefault1'];
-                echo ($val);
+                }
+                if(!empty($_GET['flexRadioDefault2'])){
                 $val2 = $_GET['flexRadioDefault2'];
-                echo ($val2);
-                $sql="INSERT INTO Assigns (keeper_id, cage_id, coordinator_id) VALUES ('$val2', '$val', '$co_id')";
-                mysqli_query($mysqli,$sql);
-                echo "<script>window.location = 'assign_cages_coordinator.php';</script>";
+                }
+                if(!empty($_GET['flexRadioDefault1']) && !empty($_GET['flexRadioDefault2'])){
+                    $sql="INSERT INTO Assigns (keeper_id, cage_id, coordinator_id) VALUES ('$val2', '$val', '$co_id')";
+                    mysqli_query($mysqli,$sql);
+                    echo "<script>window.location = 'assign_cages_coordinator.php';</script>";
+                }
             }
         }
         ?>
