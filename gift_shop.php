@@ -106,8 +106,10 @@
               }
               if(isset($_GET['buy'])){
                 $total_price = 0;
+                $total_amount = 0;
                 for($i=0; $i < $count; $i++){
                   $amount = $_GET[$item_ids[$i]];
+                  $total_amount += (int)$amount;
                   $total_price += (int)$item_prices[$i] * (int)$amount;  
                 }
                 if($total_price > $budget ){
@@ -132,12 +134,19 @@
                       mysqli_query($mysqli,$sql2);
                     } 
                   }
-                  $remaining = $budget - $total_price;
-                  echo "<script>
-                  var remaining = $remaining;
-                  alert('Transaction is successful, Remaining Money: ' + remaining);
-                  window.location.href='gift_shop.php';
-                  </script>";
+                  if($total_amount > 0){
+                    $remaining = $budget - $total_price;
+                    echo "<script>
+                    var remaining = $remaining;
+                    alert('Transaction is successful, Remaining Money: ' + remaining);
+                    window.location.href='gift_shop.php';
+                    </script>";
+                  }else{
+                    echo "<script>
+                    alert('You did not select an item');
+                    window.location.href='gift_shop.php';
+                    </script>";
+                  }
                 }
                 
               }
