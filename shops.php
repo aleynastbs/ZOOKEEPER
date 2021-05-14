@@ -47,6 +47,8 @@
         mysqli_query($mysqli,$sql);
         $sql2 = "SELECT * FROM animal_view";
         $shops = mysqli_query($mysqli,$sql2);
+        $shop_names = [];
+
         ?>
         <table class="table table-hover" data-link="row">
             <thead>
@@ -67,13 +69,24 @@
               $link = strtolower($link);
               echo 
               '<tbody><tr>
-                  <th scope="row"><a href=',$link, ' class="btn btn-outline-success btn-sm" role="button">Go</a></th>
+                  <th scope="row"><form method = "get" ><input class="btn btn-outline-success" type="submit" name = "', $row["name"], '" value="Go"><form/></th>
                   <td>', $row["name"], '</td>
                   <td>',$row["area_name"],'</td>
                   <td>',$row["description"],'</td>
                 </tr></tbody>';
+              array_push($shop_names, $row["name"]);
               }
             }
+
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                foreach($shop_names as $name){
+                    if(isset($_GET[$name])){
+                        $_SESSION['shop_name'] = $name;
+                        echo "<script>window.location.href='items.php';</script>";
+                    }
+                }
+            }
+
             ?>
           </table>
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

@@ -8,7 +8,33 @@
         <link rel="stylesheet" type="text/css" href="main.css">
     </head>
     
-    <body>
+    <?php
+        include("configure.php");
+        session_start();
+        $shop_name = $_SESSION["shop_name"];
+        $sql = "SELECT *
+                FROM Shop S
+                WHERE '$shop_name' = S.shop_name";
+        $shop_id = mysqli_query($mysqli,$sql);
+        $shop_id = $shop_id->fetch_assoc()['shop_id'];
+        $visitor_id = 1; //for test purposes
+        #$login = $_SESSION['login_user'];
+        #$visitor_id = "SELECT user_id FROM User WHERE username = '$login'";
+        #$visitor_id = mysqli_query($mysqli,$visitor_id);
+        #$visitor_id = $visitor_id->fetch_assoc()['user_id'];
+        
+        #Get the items
+        $sql = "SELECT *
+                FROM Item I , Sells S
+                WHERE '$shop_id' = S.shop_id AND S.item_id = I.item_id";
+        $items = mysqli_query($mysqli,$sql);
+        $item_ids = [];
+        $item_prices = [];
+        $item_stocks = [];
+        $item_names = [];
+        
+    echo 
+    '<body>
         <nav class="navbar navbar-expand-md">
             <div class="container-fluid">
                 <span class="navbar-brand mb-0 h1">Zoo</span>
@@ -22,7 +48,7 @@
                         <a class="nav-link" href="#">Events</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><strong>Toy Shop</strong></a>
+                        <a class="nav-link" href="#"><strong>',$shop_name,'</strong></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Animals</a>
@@ -32,30 +58,8 @@
                     </li>
                 </ul>
             </div>
-        </nav>
-
-        <?php
-        include("configure.php");
-        session_start();
-        $shop_name = "Toy_Shop";
-        $shop_id = 2;
-        $visitor_id = 1; //for test purposes
-        #$login = $_SESSION['login_user'];
-        #$visitor_id = "SELECT user_id FROM User WHERE username = '$login'";
-        #$visitor_id = mysqli_query($mysqli,$visitor_id);
-        #$visitor_id = $visitor_id->fetch_assoc()['user_id'];
-        
-        #Get the items
-        $sql = "SELECT *
-                FROM Item I , Sells S
-                WHERE $shop_id = S.shop_id AND S.item_id = I.item_id";
-        $items = mysqli_query($mysqli,$sql);
-        $item_ids = [];
-        $item_prices = [];
-        $item_names = [];
-        $item_stocks = [];
+        </nav>';
         ?>
-
         <table class="table table-hover" data-link="row">
             <thead>
               <tr>
@@ -82,8 +86,8 @@
                 $count++;
                 array_push($item_ids, $row["item_id"]);
                 array_push($item_prices, $row["item_price"]);
-                array_push($item_names, $row["item_name"]);
                 array_push($item_stocks, $row["item_stock"]);
+                array_push($item_names, $row["item_name"]);
               }
             }
           ?>  
@@ -105,14 +109,10 @@
                 echo "<script>
                 var budget = $budget;
                 alert('Your Total Amount of Money: ' + budget);
-                window.location.href='toy_shop.php';
+                window.location.href='gift_shop.php';
                 </script>";
               }
               if(isset($_GET['buy'])){
-                $sql = "SELECT total_amount_of_money 
-                FROM Visitor
-                WHERE '$visitor_id' = Visitor.visitor_id";
-                $budget  = mysqli_query($mysqli,$sql)->fetch_assoc()["total_amount_of_money"];
                 $total_price = 0;
                 $total_amount = 0;
                 for($i=0; $i < $count; $i++){
@@ -123,7 +123,7 @@
                 if($total_price > $budget ){
                   echo "<script>
                   alert('Your Total Amount of Money is Not Enough');
-                  window.location.href='toy_shop.php';
+                  window.location.href='gift_shop.php';
                   </script>";
                 }
                 else{
@@ -156,19 +156,19 @@
                       var remaining = $remaining;
                       var exceed = '$exceed';
                       alert('Transaction is partially successful, Remaining Money: ' + remaining + ', ' + exceed);
-                      
+                      window.location.href='gift_shop.php';
                       </script>";
                     }else{
                       echo "<script>
                       var remaining = $remaining;
                       alert('Transaction is successful, Remaining Money: ' + remaining);
-                      window.location.href='toy_shop.php';
+                      window.location.href='gift_shop.php';
                       </script>";
                     }
                   }else{
                     echo "<script>
                     alert('You did not select an item');
-                    window.location.href='toy_shop.php';
+                    window.location.href='gift_shop.php';
                     </script>";
                   }
                 }
