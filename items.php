@@ -109,7 +109,7 @@
                 echo "<script>
                 var budget = $budget;
                 alert('Your Total Amount of Money: ' + budget);
-                window.location.href='gift_shop.php';
+                window.location.href='items.php';
                 </script>";
               }
               if(isset($_GET['buy'])){
@@ -123,7 +123,7 @@
                 if($total_price > $budget ){
                   echo "<script>
                   alert('Your Total Amount of Money is Not Enough');
-                  window.location.href='gift_shop.php';
+                  window.location.href='items.php';
                   </script>";
                 }
                 else{
@@ -156,19 +156,19 @@
                       var remaining = $remaining;
                       var exceed = '$exceed';
                       alert('Transaction is partially successful, Remaining Money: ' + remaining + ', ' + exceed);
-                      window.location.href='gift_shop.php';
+                      window.location.href='items.php';
                       </script>";
                     }else{
                       echo "<script>
                       var remaining = $remaining;
                       alert('Transaction is successful, Remaining Money: ' + remaining);
-                      window.location.href='gift_shop.php';
+                      window.location.href='items.php';
                       </script>";
                     }
                   }else{
                     echo "<script>
                     alert('You did not select an item');
-                    window.location.href='gift_shop.php';
+                    window.location.href='items.php';
                     </script>";
                   }
                 }
