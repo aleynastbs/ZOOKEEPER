@@ -152,7 +152,6 @@ public class database{
                     "comment_id INT," +
                     "user_id INT," +
                     "groupTour_id INT," +
-                    "date DATE," +
                     "PRIMARY KEY (comment_id)," +
                     "FOREIGN KEY (comment_id) REFERENCES Comment(comment_id)," +
                     "FOREIGN KEY (user_id) REFERENCES Visitor(visitor_id)," +
@@ -165,6 +164,13 @@ public class database{
                     "FOREIGN KEY (membership_id) REFERENCES Membership(membership_id)," +
                     "FOREIGN KEY (user_id) REFERENCES Visitor(visitor_id))" +
                     "ENGINE=innodb");
+            //------TRIGGER FOR HAS - MEMBERSHIP---------------
+            stmt.executeUpdate("CREATE TRIGGER updateHas AFTER DELETE ON Membership " +
+                    "FOR EACH ROW " +
+                    "BEGIN " +
+                    "DELETE FROM Has WHERE Has.membership_id = OLD.membership_id;" +
+                    "END;");
+            //------------------------------------------------
             stmt.executeUpdate("CREATE TABLE Educational_Program(" +
                     "edu_prog_id INT," +
                     "topic VARCHAR(20) NOT NULL," +
@@ -187,6 +193,13 @@ public class database{
                     "FOREIGN KEY (visitor_id) REFERENCES Visitor(visitor_id)," +
                     "FOREIGN KEY (group_tour_id) REFERENCES Group_Tour(group_tour_id))" +
                     "ENGINE=innodb");
+            //------TRIGGER FOR EVENT and ATTENDS---------------
+            stmt.executeUpdate("CREATE TRIGGER update_event AFTER INSERT ON Attends " +
+                    "FOR EACH ROW " +
+                    "BEGIN " +
+                    "UPDATE Event SET Event.num_of_participants = Event.num_of_participants + 1 WHERE Event.event_id = NEW.group_tour_id;" +
+                    "END;");
+            //------------------------------------------------
             stmt.executeUpdate("CREATE TABLE Creates_Event(" +
                     "coordinator_id INT," +
                     "event_id INT," +
@@ -327,11 +340,12 @@ public class database{
                     "FOREIGN KEY (item_id) REFERENCES Item(item_id))" +
                     "ENGINE=innodb");
             stmt.executeUpdate("CREATE TABLE Buys(" +
+                    "transaction_id INT AUTO_INCREMENT," +
                     "item_id INT," +
                     "user_id INT," +
                     "amount INT," +
                     "purchase_date DATE," +
-                    "PRIMARY KEY(item_id, user_id)," +
+                    "PRIMARY KEY(transaction_id)," +
                     "FOREIGN KEY (item_id) REFERENCES Item(item_id)," +
                     "FOREIGN KEY (user_id) REFERENCES User(user_id))" +
                     "ENGINE=innodb");
@@ -406,7 +420,7 @@ public class database{
                     "(7, 10000, 5000, 'children')," +
                     "(8, 10000, 5000, 'children');");
             stmt.executeUpdate("INSERT INTO Comments VALUES" +
-                    "(1, 1, 1, DATE '2022-07-08');");
+                    "(1, 1, 1);");
             stmt.executeUpdate("INSERT INTO Attends VALUES" +
                     "(1,1,200);");
             stmt.executeUpdate("INSERT INTO Creates_Event VALUES" +
@@ -603,7 +617,7 @@ public class database{
                     "(1,3)," +
                     "(2,4)," +
                     "(2,5);");
-            stmt.executeUpdate("INSERT INTO Buys VALUES" +
+            stmt.executeUpdate("INSERT INTO Buys(item_id, user_id, amount, purchase_date) VALUES" +
                     "(1,1,1, DATE '2020-05-10');");
             stmt.executeUpdate("INSERT INTO Assigns VALUES" +
                     "(2,1,4),"+

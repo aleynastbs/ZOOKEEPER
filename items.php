@@ -145,7 +145,7 @@
                       mysqli_query($mysqli,$sql); 
                       if($amount > 0){
                         $date = date("Y-m-d");
-                        $sql2 = "INSERT INTO Buys VALUES ('$item_ids[$i]', '$visitor_id', '$amount', '$date')";
+                        $sql2 = "INSERT INTO Buys(item_id, user_id, amount, purchase_date) VALUES ('$item_ids[$i]', '$visitor_id', '$amount', '$date')";
                         mysqli_query($mysqli,$sql2);
                       }
                     }else{
