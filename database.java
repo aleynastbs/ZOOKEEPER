@@ -76,6 +76,7 @@ public class database{
             stmt.executeUpdate("DROP TABLE IF EXISTS Employee");
             stmt.executeUpdate("DROP TABLE IF EXISTS User");
             stmt.executeUpdate("DROP PROCEDURE IF EXISTS list_shops");
+            stmt.executeUpdate("DROP PROCEDURE IF EXISTS get_user_type");
                 
             //Create Tables
             stmt.executeUpdate("CREATE TABLE User(" +
@@ -623,6 +624,15 @@ public class database{
            stmt.executeUpdate("CREATE PROCEDURE list_shops()" +
                     "SELECT * " +
                     "FROM Shop NATURAL JOIN Is_In_S NATURAL JOIN Area; ");
+            //------STORED PROCEDURE FOR FINDING USER TYPE-----
+            stmt.executeUpdate("CREATE PROCEDURE get_user_type(" +
+                    "IN userid INT" +
+                    ")" +
+                    "SELECT user.user_id, CASE WHEN(user.user_id IN (SELECT coordinator.coordinator_id FROM coordinator)) THEN 'coordinator'" +
+                    "WHEN(user.user_id IN (SELECT keeper.keeper_id FROM keeper)) THEN 'keeper'" +
+                    "WHEN(user.user_id IN (SELECT visitor.visitor_id FROM visitor)) THEN 'visitor' END AS user_type" +
+                    "FROM user" +
+                    "WHERE user.user_id = userid;");
             //-------------------------------------------------
             stmt.executeUpdate("INSERT INTO Sells VALUES" +
                     "(1,1)," +
