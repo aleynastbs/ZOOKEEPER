@@ -60,36 +60,44 @@
                 <th style="text-align:center">Date</th>
                 <td></td>
               </tr>
-        <?php
-            $vis_id = $_SESSION['user_id'];
-            $sql1 = "SELECT * FROM ((Group_Tour INNER JOIN Event ON Group_Tour.group_tour_id = Event.event_id)
-                                               INNER JOIN Attends ON Group_Tour.group_tour_id = Attends.group_tour_id) 
-                                               WHERE visitor_id = $vis_id";
-            $query = mysqli_query($mysqli,$sql1);
-            while($result = $query -> fetch_assoc()) {
-                echo "<tr><td style='text-align:center'>" . $result['event_name'] . 
-                    "</td><td style='text-align:center'>" . $result['description'] . 
-                    "</td><td style='text-align:center'>" . $result['date'] . "</td>";
-                echo "<th style='text-align:center' scope='row'>";
-                echo '<input class="form-check-input" type="radio" value="', $result["event_id"] , '" name="flexRadioDefault1"/></td>'; 
-                echo "</tr>";
-            }
-            echo "</table>";
-            echo "
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>";
-            echo "
-                <p>&nbsp;</p>
-                <div class=select-margin><input type='submit' name='comment' class='btn btn-outline-success' style='width: 15%' id='comment' value='Leave A Comment'/></div>
-            </form>";
-
-            if(isset($_POST['comment'])){
-                if(!empty($_POST['flexRadioDefault1'])){
-                    $gt_id = $_POST['flexRadioDefault1'];
-                    $_SESSION['gt_id'] = $gt_id;
-                    echo "<script>window.location = 'comments_visitor.php';</script>";
+              <?php
+                $display = 'block';
+                $date = date("Y-m-d");
+                $vis_id = $_SESSION['user_id']; #change this later
+                $sql1 = "SELECT * FROM ((Group_Tour INNER JOIN Event ON Group_Tour.group_tour_id = Event.event_id)
+                                                INNER JOIN Attends ON Group_Tour.group_tour_id = Attends.group_tour_id) 
+                                                WHERE visitor_id = $vis_id";
+                $query = mysqli_query($mysqli,$sql1);
+                while($result = $query -> fetch_assoc()) {
+                    if($result['date'] < $date){
+                        $display = 'block';
+                    }
+                    else{
+                        $display = 'none';
+                    }
+                    echo "<tr><td style='text-align:center'>" . $result['event_name'] . 
+                        "</td><td style='text-align:center'>" . $result['description'] . 
+                        "</td><td style='text-align:center'>" . $result['date'] . "</td>";
+                    echo "<th style='text-align:center' scope='row'>";
+                    echo '<input class="form-check-input" type="radio" style="display: ',$display,'" value="', $result["event_id"] , '" name="flexRadioDefault1"/></td>'; 
+                    echo "</tr>";
                 }
-            }
+                echo "</table>";
+                echo "
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>";
+                echo "
+                    <p>&nbsp;</p>
+                    <div class=select-margin><input type='submit' name='comment' class='btn btn-outline-success' style='width: 15%' id='comment' value='Leave A Comment'/></div>
+                </form>";
+
+                if(isset($_POST['comment'])){
+                    if(!empty($_POST['flexRadioDefault1'])){
+                        $gt_id = $_POST['flexRadioDefault1'];
+                        $_SESSION['gt_id'] = $gt_id;
+                        echo "<script>window.location = 'comments_visitor.php';</script>";
+                    }
+                }
         ?>   
     </body>
 </html>
