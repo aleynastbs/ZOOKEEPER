@@ -75,7 +75,8 @@ public class database{
             stmt.executeUpdate("DROP TABLE IF EXISTS Veterinarian");
             stmt.executeUpdate("DROP TABLE IF EXISTS Employee");
             stmt.executeUpdate("DROP TABLE IF EXISTS User");
-
+            stmt.executeUpdate("DROP PROCEDURE IF EXISTS list_shops");
+                
             //Create Tables
             stmt.executeUpdate("CREATE TABLE User(" +
                     "user_id INT AUTO_INCREMENT," +
@@ -618,6 +619,11 @@ public class database{
             stmt.executeUpdate("INSERT INTO Is_In_S VALUES" +
                     "(1,1),"+
                     "(2,2);");
+           //------STORED PROCEDURE FOR LISTING THE SHOPS-----
+           stmt.executeUpdate("CREATE PROCEDURE list_shops()" +
+                    "SELECT * " +
+                    "FROM Shop NATURAL JOIN Is_In_S NATURAL JOIN Area; ");
+            //-------------------------------------------------
             stmt.executeUpdate("INSERT INTO Sells VALUES" +
                     "(1,1)," +
                     "(1,2)," +

@@ -24,10 +24,13 @@
         #$visitor_id = $visitor_id->fetch_assoc()['user_id'];
         
         #Get the items
-        $sql = "SELECT *
+        $sql = "CREATE VIEW items_view AS
+                SELECT I.item_id, I.item_name, I.item_stock, I.item_price
                 FROM Item I , Sells S
                 WHERE '$shop_id' = S.shop_id AND S.item_id = I.item_id";
-        $items = mysqli_query($mysqli,$sql);
+        mysqli_query($mysqli,$sql);        
+        $sql2 = "SELECT * FROM items_view";
+        $items = mysqli_query($mysqli,$sql2);
         $item_ids = [];
         $item_prices = [];
         $item_stocks = [];

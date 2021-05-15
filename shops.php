@@ -44,11 +44,8 @@
         #$visitor_id = "SELECT user_id FROM User WHERE username = '$login'";
         #$visitor_id = mysqli_query($mysqli,$visitor_id);
         #$visitor_id = $visitor_id->fetch_assoc()['user_id'];
-        $sql = "CREATE VIEW shop_view (name, description, area_name) AS
-                SELECT shop_name, shop_description, area_name
-                FROM Shop NATURAL JOIN Is_In_S NATURAL JOIN Area";
-        mysqli_query($mysqli,$sql);
-        $sql2 = "SELECT * FROM shop_view";
+        
+        $sql2 = "CALL list_shops();"; //call to the stored procedure
         $shops = mysqli_query($mysqli,$sql2);
         $shop_names = [];
 
@@ -68,16 +65,14 @@
             }
             else{ 
               while($row = $shops->fetch_assoc()) {
-              $link = $row["name"].".php";
-              $link = strtolower($link);
               echo 
               '<tbody><tr>
-                  <th scope="row"><form method = "get" ><input class="btn btn-outline-success" type="submit" name = "', $row["name"], '" value="Go"><form/></th>
-                  <td>', $row["name"], '</td>
+                  <th scope="row"><form method = "get" ><input class="btn btn-outline-success" type="submit" name = "', $row["shop_name"], '" value="Go"><form/></th>
+                  <td>', $row["shop_name"], '</td>
                   <td>',$row["area_name"],'</td>
-                  <td>',$row["description"],'</td>
+                  <td>',$row["shop_description"],'</td>
                 </tr></tbody>';
-              array_push($shop_names, $row["name"]);
+              array_push($shop_names, $row["shop_name"]);
               }
             }
 
