@@ -152,6 +152,7 @@ public class database{
                     "comment_id INT," +
                     "user_id INT," +
                     "groupTour_id INT," +
+                    "date DATE," +
                     "PRIMARY KEY (comment_id)," +
                     "FOREIGN KEY (comment_id) REFERENCES Comment(comment_id)," +
                     "FOREIGN KEY (user_id) REFERENCES Visitor(visitor_id)," +
@@ -405,7 +406,7 @@ public class database{
                     "(7, 10000, 5000, 'children')," +
                     "(8, 10000, 5000, 'children');");
             stmt.executeUpdate("INSERT INTO Comments VALUES" +
-                    "(1, 1, 1);");
+                    "(1, 1, 1, DATE '2022-07-08');");
             stmt.executeUpdate("INSERT INTO Attends VALUES" +
                     "(1,1,200);");
             stmt.executeUpdate("INSERT INTO Creates_Event VALUES" +
