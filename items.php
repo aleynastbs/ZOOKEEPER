@@ -45,7 +45,7 @@
             <div class="collapse navbar-collapse" id="main-navigation">
                 <ul class="nav navbar-nav navbar-center">
                     <li class="nav-item">
-                        <a class="nav-link">Home</a>
+                        <a class="nav-link" href="visitor_home.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="conservation_visitor.php">Conservation Organizations</a>

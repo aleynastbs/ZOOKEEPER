@@ -56,7 +56,10 @@
                     $sql = "SELECT * FROM User WHERE User.username = '$username'";
                     $user_info = mysqli_query($mysqli,$sql);
                     $user_id = $user_info->fetch_assoc()['user_id'];
-                    
+                    $_SESSION['username'] = $username; 
+                    echo "<script>
+                    window.location.href='visitor_home.php';
+                    </script>";
                   }
                 }
             }
