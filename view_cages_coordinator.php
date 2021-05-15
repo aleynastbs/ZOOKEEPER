@@ -23,6 +23,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="view_cages_coordinator.php"><strong>View & Assign Cages</strong></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="view_reports_coordinator.php">View Reports</a>
+                </li>
             </ul>
         </div>
     </nav>
