@@ -39,7 +39,7 @@
         <h3 style="text-align:left">Add Your Comment</h3>
         <div><textarea rows="3" name='comment_box' id='comment_box'></textarea></div>
         <div class='select-margin'><input type='submit' name='leave_comment' class='btn btn-outline-success' style='width: 15%' id='leave_comment' value='Comment'/></div>
-        <div class='select-margin'><a href="group_tour_visitor.php" class="btn btn-outline-success btn" role="button">Back To Event List</a></div>
+        <div class='select-margin'><a href="group_tour_visitor.php" class="btn btn-outline-success btn"  style='width: 15%' role="button">Back To Event List</a></div>
         <p>&nbsp;</p>
         <h3 style="text-align:left">Comments</h3>
         <table style="width:100%" class="center">
