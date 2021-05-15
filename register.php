@@ -46,18 +46,17 @@
                 </script>";
             }
             else{
-                $sql="SELECT EXISTS (SELECT username FROM User WHERE username = '$username)";
+                $sql="SELECT username FROM User WHERE username = '$username';";
                 $result = mysqli_query($mysqli,$sql);
-                $sql2="SELECT EXISTS (SELECT email FROM User WHERE email = '$email)";
+                $sql2="SELECT email FROM User WHERE email = '$email';";
                 $result2 = mysqli_query($mysqli,$sql2);
 
-               
-                if($result) #doesnt work???
+                if($result->num_rows > 0){
                     echo "<script>
                     alert('Username taken.');
                     </script>";
                 }
-                else if($result2){ #doesnt work???
+                else if($result2->num_rows > 0){
                     echo "<script>
                     alert('Email has already been used for registiration.');
                     </script>";
@@ -75,8 +74,19 @@
             }
         }
         ?>
-       
-       <div class="col-md-4 col-md-offset-4" id="login">
+        <script>
+        var check = function() {
+            if (document.getElementById('password').value ==
+                document.getElementById('cpassword').value) {
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'matching';
+            } else {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'not matching';
+            }
+        }
+        </script>
+        <div class="col-md-4 col-md-offset-4" id="login">
 						<section id="inner-wrapper" class="login">
 							<article>
 								<form method='post'>
@@ -112,11 +122,12 @@
                                         <label for="lcpassword">Confirm Password<span style="color: red">*</span></label>
 										<div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-key"> </i></span>
-											<input type="password" name="password" class="form-control" placeholder="Password" required/>
+											<input type="password" id="password" name="password" class="form-control" placeholder="Password" onkeyup='check();' required/>
                                             <p>&nbsp;</p>
 											<span class="input-group-addon"><i class="fa fa-key"> </i></span>
-											<input type="password" name="cpassword" class="form-control" placeholder="Confirm Password" required/>
+											<input type="password" id="cpassword" name="cpassword" class="form-control" placeholder="Confirm Password" onkeyup='check();' required/>
 										</div>
+                                        <span id='message'></span>
 									</div>
                                     <div class="form-group">
                                         <label for="laddress">Address<span style="color: red">*</span></label>
