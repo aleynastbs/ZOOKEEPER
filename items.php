@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+        include("configure.php");
+        session_start();
+        if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === FALSE){
+            header("location: login.php");
+        } else if(!isset($_SESSION['logged_in']) || !isset($_SESSION['user_type'])){
+            header("location: login.php");
+        } else if($_SESSION['user_type'] != "visitor"){
+            header("location: login.php");
+        }
+?>
     <head>
         <title>Zoo Sample Page</title>
         <meta charset="utf-8">
@@ -9,19 +20,13 @@
     </head>
     
     <?php
-        include("configure.php");
-        session_start();
         $shop_name = $_SESSION["shop_name"];
         $sql = "SELECT *
                 FROM Shop S
                 WHERE '$shop_name' = S.shop_name";
         $shop_id = mysqli_query($mysqli,$sql);
         $shop_id = $shop_id->fetch_assoc()['shop_id'];
-        $visitor_id = 1; //for test purposes
-        #$login = $_SESSION['login_user'];
-        #$visitor_id = "SELECT user_id FROM User WHERE username = '$login'";
-        #$visitor_id = mysqli_query($mysqli,$visitor_id);
-        #$visitor_id = $visitor_id->fetch_assoc()['user_id'];
+        $visitor_id = $_SESSION['user_id'];
         
         #Get the items
         $sql = "CREATE VIEW items_view AS
@@ -61,6 +66,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="membership.php">Membership</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php"><strong>Logout</strong></a>
                     </li>
                 </ul>
             </div>

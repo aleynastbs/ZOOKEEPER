@@ -9,36 +9,24 @@
     </head>
     
     <body>
-        <nav class="navbar navbar-expand-md">
-          <div class="container-fluid">
+    <nav class="navbar navbar-expand-md">
+        <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">Zoo</span>
         </div>
-            <div class="collapse navbar-collapse" id="main-navigation">
-                <ul class="nav navbar-nav navbar-center">
-                    <li class="nav-item">
-                        <a class="nav-link"><strong>Home</strong></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="conservation_visitor.php">Conservation Organizations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="group_tour_visitor.php">Group Tours</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="shops.php">Shops</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Animals</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="membership.php">Membership</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php"><strong>Logout</strong></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <div class="collapse navbar-collapse" id="main-navigation">
+            <ul class="nav navbar-nav navbar-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><strong>Home</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="view_cages_keeper.php">View My Cages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php"><strong>Logout</strong></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
         
         <?php
         include("configure.php");
@@ -47,7 +35,7 @@
             header("location: login.php");
         } else if(!isset($_SESSION['logged_in']) || !isset($_SESSION['user_type'])){
             header("location: login.php");
-        } else if($_SESSION['user_type'] != "visitor"){
+        } else if($_SESSION['user_type'] != "keeper"){
             header("location: login.php");
         }
         $username = $_SESSION['username'];

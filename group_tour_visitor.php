@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+        include("configure.php");
+        session_start();
+        if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === FALSE){
+            header("location: login.php");
+        } else if(!isset($_SESSION['logged_in']) || !isset($_SESSION['user_type'])){
+            header("location: login.php");
+        } else if($_SESSION['user_type'] != "visitor"){
+            header("location: login.php");
+        }
+?>
     <head>
         <title>Zoo Sample Page</title>
         <meta charset="utf-8">
@@ -15,7 +26,7 @@
             <div class="collapse navbar-collapse" id="main-navigation">
                 <ul class="nav navbar-nav navbar-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="visitor_home.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="conservation_visitor.php">Conservation Organizations</a>
@@ -31,6 +42,10 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="membership.php">Membership</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php"><strong>Logout</strong></a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -46,9 +61,7 @@
                 <td></td>
               </tr>
         <?php
-            include('configure.php');
-            session_start();
-            $vis_id = 1; #change this later
+            $vis_id = $_SESSION['user_id'];
             $sql1 = "SELECT * FROM ((Group_Tour INNER JOIN Event ON Group_Tour.group_tour_id = Event.event_id)
                                                INNER JOIN Attends ON Group_Tour.group_tour_id = Attends.group_tour_id) 
                                                WHERE visitor_id = $vis_id";

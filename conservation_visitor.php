@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+        include("configure.php");
+        session_start();
+        if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === FALSE){
+            header("location: login.php");
+        } else if(!isset($_SESSION['logged_in']) || !isset($_SESSION['user_type'])){
+            header("location: login.php");
+        } else if($_SESSION['user_type'] != "visitor"){
+            header("location: login.php");
+        }
+?>
     <head>
         <title>Zoo Sample Page</title>
         <meta charset="utf-8">
@@ -8,14 +19,14 @@
         <link rel="stylesheet" type="text/css" href="employee.css">
     </head>
     <body>
-        <nav class="navbar navbar-expand-md">
-            <div class="container-fluid">
-                <span class="navbar-brand mb-0 h1">Zoo</span>
-            </div>
+    <nav class="navbar navbar-expand-md">
+          <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Zoo</span>
+        </div>
             <div class="collapse navbar-collapse" id="main-navigation">
                 <ul class="nav navbar-nav navbar-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="visitor_home.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="conservation_visitor.php"><strong>Conservation Organizations</strong></a>
@@ -31,6 +42,10 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="membership.php">Membership</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php"><strong>Logout</strong></a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -48,9 +63,7 @@
                 <td></td>
               </tr>
         <?php
-            include('configure.php');
-            session_start();
-            $vis_id = 1; #change this later
+            $vis_id = $_SESSION['user_id'];
             if(isset($_POST['donate'])){
                 if(!empty($_POST['flexRadioDefault1'])){
                     $con_id = $_POST['flexRadioDefault1'];

@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+        include("configure.php");
+        session_start();
+        if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === FALSE){
+            header("location: login.php");
+        } else if(!isset($_SESSION['logged_in']) || !isset($_SESSION['user_type'])){
+            header("location: login.php");
+        } else if($_SESSION['user_type'] != "coordinator"){
+            header("location: login.php");
+        }
+?>
     <head>
         <title>Zoo Sample Page</title>
         <meta charset="utf-8">
@@ -8,7 +19,7 @@
         <link rel="stylesheet" type="text/css" href="employee.css">
     </head>
     <body>
-        <nav class="navbar navbar-expand-md">
+    <nav class="navbar navbar-expand-md">
             <div class="container-fluid">
                 <span class="navbar-brand mb-0 h1">Zoo</span>
             </div>
@@ -26,16 +37,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="view_reports_coordinator.php">View Reports</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php"><strong>Logout</strong></a>
+                    </li>
                 </ul>
             </div>
         </nav>
         <p>&nbsp;</p>
         <p>&nbsp;</p>
         <?php
-        include('configure.php');
-        session_start();
-        $isDisabled = true;
-        echo "<div class='row'>
+        echo "
+        <div class='headerCustom'>
+            <h1 style='text-align:center'>Assign Cage</h1>
+        </div>
+        <div class='row'>
         <div class='column'>
         <form class='table-form' method='get'>
                 <table style='width:80%' class='center'>
@@ -48,7 +63,7 @@
                         <th style='text-align:center'>Species In Cage</th>
                       </tr>";
                       
-                      $sql1 = "SELECT Cage.cage_id, cage_size, cage_type, animal_species, Animal.animal_id 
+                        $sql1 = "SELECT Cage.cage_id, cage_size, cage_type, animal_species, Animal.animal_id 
                         FROM ((Cage NATURAL JOIN Belongs_to)NATURAL JOIN Animal)
                         WHERE cage_id not in (SELECT cage_id FROM Assigns)
                         GROUP BY cage_id";
@@ -93,7 +108,7 @@
         </div>
         <p>&nbsp;</p>";
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $co_id = 4;
+            $co_id = $_SESSION['user_id'];
             if (isset($_GET['confirm2']))
             {
                 if(!empty($_GET['flexRadioDefault1'])){

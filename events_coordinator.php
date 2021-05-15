@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+        include("configure.php");
+        session_start();
+        if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === FALSE){
+            header("location: login.php");
+        } else if(!isset($_SESSION['logged_in']) || !isset($_SESSION['user_type'])){
+            header("location: login.php");
+        } else if($_SESSION['user_type'] != "coordinator"){
+            header("location: login.php");
+        }
+?>
     <head>
         <title>Zoo Sample Page</title>
         <meta charset="utf-8">
@@ -8,7 +19,7 @@
         <link rel="stylesheet" type="text/css" href="employee.css">
     </head>
     <body>
-        <nav class="navbar navbar-expand-md">
+    <nav class="navbar navbar-expand-md">
             <div class="container-fluid">
                 <span class="navbar-brand mb-0 h1">Zoo</span>
             </div>
@@ -25,6 +36,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="view_reports_coordinator.php">View Reports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php"><strong>Logout</strong></a>
                     </li>
                 </ul>
             </div>
@@ -43,8 +57,6 @@
                 <th style="text-align:center">Description</th>
               </tr>
             <?php
-                include('configure.php');
-                session_start();
                 $sql1 = "SELECT * FROM Event";
                 $query = mysqli_query($mysqli,$sql1);
                 while($result = $query -> fetch_assoc()) {

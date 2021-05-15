@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+        include("configure.php");
+        session_start();
+        if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === FALSE){
+            header("location: login.php");
+        } else if(!isset($_SESSION['logged_in']) || !isset($_SESSION['user_type'])){
+            header("location: login.php");
+        } else if($_SESSION['user_type'] != "visitor"){
+            header("location: login.php");
+        }
+?>
     <head>
         <title>Zoo Sample Page</title>
         <meta charset="utf-8">
@@ -32,18 +43,16 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="membership.php"><strong>Membership</strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php"><strong>Logout</strong></a>
+                        </li>
                     </ul>
                 </div>
             </nav>
         
         <?php
-        include("configure.php");
-        session_start();
-        $visitor_id = 1; //for test purposes
-        #$login = $_SESSION['login_user'];
-        #$visitor_id = "SELECT user_id FROM User WHERE username = '$login'";
-        #$visitor_id = mysqli_query($mysqli,$visitor_id);
-        #$visitor_id = $visitor_id->fetch_assoc()['user_id'];
+        $visitor_id = $_SESSION['user_id'];
 
         //check the membership status of the visitor
         $sql = "SELECT *

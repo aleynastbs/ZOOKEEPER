@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+        include("configure.php");
+        session_start();
+        if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === FALSE){
+            header("location: login.php");
+        } else if(!isset($_SESSION['logged_in']) || !isset($_SESSION['user_type'])){
+            header("location: login.php");
+        } else if($_SESSION['user_type'] != "coordinator"){
+            header("location: login.php");
+        }
+?>
     <head>
         <title>Zoo Sample Page</title>
         <meta charset="utf-8">
@@ -9,8 +20,7 @@
     </head>
     <body>
     <?php
-        include('configure.php');
-        session_start();
+        $c_id = $_SESSION['user_id'];
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if(isset($_GET['gt'])){
                 $event_name = $_GET['name_gt'];
@@ -25,7 +35,7 @@
                 $id = mysqli_insert_id($mysqli);
                 $sql2="INSERT INTO Group_Tour (group_tour_id) VALUES ($id)";
                 mysqli_query($mysqli,$sql2);
-                $sql3="INSERT INTO Creates_Event (coordinator_id, event_id) VALUES (4, $id)";
+                $sql3="INSERT INTO Creates_Event (coordinator_id, event_id) VALUES ($c_id, $id)";
                 mysqli_query($mysqli,$sql3);
                 echo "<script>window.location = 'create_event.php';</script>";
             }
@@ -43,7 +53,7 @@
                 $id = mysqli_insert_id($mysqli);
                 $sql2="INSERT INTO Educational_Program (edu_prog_id, topic) VALUES ($id, '$topic')";
                 mysqli_query($mysqli,$sql2);
-                $sql3="INSERT INTO Creates_Event (coordinator_id, event_id) VALUES (4, $id)";
+                $sql3="INSERT INTO Creates_Event (coordinator_id, event_id) VALUES ($c_id, $id)";
                 mysqli_query($mysqli,$sql3);
                 echo "<script>window.location = 'create_event.php';</script>";
             }
@@ -62,7 +72,7 @@
                 $id = mysqli_insert_id($mysqli);
                 $sql2="INSERT INTO Conservation_Organization (con_org_id, goal_amount, cause) VALUES ($id, '$goal', '$cause')";
                 mysqli_query($mysqli,$sql2);
-                $sql3="INSERT INTO Creates_Event (coordinator_id, event_id) VALUES (4, $id)";
+                $sql3="INSERT INTO Creates_Event (coordinator_id, event_id) VALUES ($c_id, $id)";
                 mysqli_query($mysqli,$sql3);
                 echo "<script>window.location = 'create_event.php';</script>";
             }
@@ -87,6 +97,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="view_cages_coordinator.php">View & Assign Cages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="view_reports_coordinator.php">View Reports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php"><strong>Logout</strong></a>
                     </li>
                 </ul>
             </div>

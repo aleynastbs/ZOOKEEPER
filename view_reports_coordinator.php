@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+        include("configure.php");
+        session_start();
+        if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === FALSE){
+            header("location: login.php");
+        } else if(!isset($_SESSION['logged_in']) || !isset($_SESSION['user_type'])){
+            header("location: login.php");
+        } else if($_SESSION['user_type'] != "coordinator"){
+            header("location: login.php");
+        }
+?>
     <head>
         <title>Zoo Sample Page</title>
         <meta charset="utf-8">
@@ -8,14 +19,14 @@
         <link rel="stylesheet" type="text/css" href="employee.css">
     </head>
     <body>
-        <nav class="navbar navbar-expand-md">
+    <nav class="navbar navbar-expand-md">
             <div class="container-fluid">
                 <span class="navbar-brand mb-0 h1">Zoo</span>
             </div>
             <div class="collapse navbar-collapse" id="main-navigation">
                 <ul class="nav navbar-nav navbar-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="coordinator_home.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="events_coordinator.php">Events</a>
@@ -26,15 +37,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="view_reports_coordinator.php"><strong>View Reports</strong></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php"><strong>Logout</strong></a>
+                    </li>
                 </ul>
             </div>
         </nav>
         <div class='headerCustom'>
-            <h1 style="text-align:center">Reports</h3>
+            <h1 style="text-align:center">Reports</h1>
         </div>
         <?php
-        include('configure.php');
-        session_start();
         $filter_days = 10000;
         if(isset($_POST['filter'])){
             $filter_days = (int) $_POST['date-range'];

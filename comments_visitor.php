@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+        include("configure.php");
+        session_start();
+        if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === FALSE){
+            header("location: login.php");
+        } else if(!isset($_SESSION['logged_in']) || !isset($_SESSION['user_type'])){
+            header("location: login.php");
+        } else if($_SESSION['user_type'] != "visitor"){
+            header("location: login.php");
+        }
+?>
     <head>
         <title>Zoo Sample Page</title>
         <meta charset="utf-8">
@@ -9,14 +20,14 @@
         <link rel="stylesheet" type="text/css" href="employee.css">
     </head>
     <body>
-        <nav class="navbar navbar-expand-md">
-            <div class="container-fluid">
-                <span class="navbar-brand mb-0 h1">Zoo</span>
-            </div>
+    <nav class="navbar navbar-expand-md">
+          <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Zoo</span>
+        </div>
             <div class="collapse navbar-collapse" id="main-navigation">
                 <ul class="nav navbar-nav navbar-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="conservation_visitor.php">Conservation Organizations</a>
@@ -32,6 +43,10 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="membership.php">Membership</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php"><strong>Logout</strong></a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -51,9 +66,7 @@
                 <th style="text-align:center">Dislikes</th>
               </tr>
         <?php
-            include('configure.php');
-            session_start();
-            $vis_id = 1; #fixxxxx
+            $vis_id = $_SESSION['user_id'];
             $gt_id = $_SESSION['gt_id'];
             $sql1 = "SELECT * FROM Comments INNER JOIN Comment ON Comments.comment_id = Comment.comment_id
                                             INNER JOIN User ON Comments.user_id = User.user_id 

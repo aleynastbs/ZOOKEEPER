@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+        include("configure.php");
+        session_start();
+        if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === FALSE){
+            header("location: login.php");
+        } else if(!isset($_SESSION['logged_in']) || !isset($_SESSION['user_type'])){
+            header("location: login.php");
+        } else if($_SESSION['user_type'] != "keeper"){
+            header("location: login.php");
+        }
+?>
     <head>
         <title>Zoo Sample Page</title>
         <meta charset="utf-8">
@@ -8,36 +19,35 @@
         <link rel="stylesheet" type="text/css" href="employee.css">
     </head>
 <body>
-    <nav class="navbar navbar-expand-md">
+<nav class="navbar navbar-expand-md">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">Zoo</span>
         </div>
         <div class="collapse navbar-collapse" id="main-navigation">
             <ul class="nav navbar-nav navbar-center">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="keeper_home.php">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="view_cages_keeper.php"><strong>View My Cages</strong></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php"><strong>Logout</strong></a>
+                </li>
             </ul>
         </div>
     </nav>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
     
     <?php
-        include('configure.php');
-        session_start();
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                echo "<h3 style='text-align:center'>Trainings</h3><form class='table-form' method='get'>
+                echo "<div class='headerCustom><h3 style='text-align:center'>Trainings</h3></div><form class='table-form' method='get'>
                 <table style='width:45%' class='center'>
                 <tr>
                 <th style='text-align:center'>Training Topic</th>
                 <th style='text-align:center'>Training Date</th>
                 <td></td>
                 </tr>";
-                $keeper_id = 2;
+                $keeper_id = $_SESSION['user_id'];
                 $animal_id = $_SESSION['animal_id'];
                 $sql1 = "SELECT training_id, training_description, training_date
                         FROM Schedules
