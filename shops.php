@@ -44,11 +44,11 @@
         #$visitor_id = "SELECT user_id FROM User WHERE username = '$login'";
         #$visitor_id = mysqli_query($mysqli,$visitor_id);
         #$visitor_id = $visitor_id->fetch_assoc()['user_id'];
-        $sql = "CREATE VIEW animal_view (name, description, area_name) AS
+        $sql = "CREATE VIEW shop_view (name, description, area_name) AS
                 SELECT shop_name, shop_description, area_name
                 FROM Shop NATURAL JOIN Is_In_S NATURAL JOIN Area";
         mysqli_query($mysqli,$sql);
-        $sql2 = "SELECT * FROM animal_view";
+        $sql2 = "SELECT * FROM shop_view";
         $shops = mysqli_query($mysqli,$sql2);
         $shop_names = [];
 
