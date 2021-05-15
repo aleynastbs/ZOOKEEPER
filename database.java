@@ -427,9 +427,9 @@ public class database{
                     "(7, 10000, 5000, 'children')," +
                     "(8, 10000, 5000, 'children');");
             stmt.executeUpdate("INSERT INTO Comments VALUES" +
-                    "(1, 1, 1);");
+                    "(1, 1, 1, DATE '2024-07-03');");
             stmt.executeUpdate("INSERT INTO Attends VALUES" +
-                    "(1,1,200, DATE '2024-07-03');");
+                    "(1,1,200);");
             stmt.executeUpdate("INSERT INTO Creates_Event VALUES" +
                     "(4,1)," +
                     "(4,2)," +
