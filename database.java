@@ -88,6 +88,9 @@ public class database{
                     "password VARCHAR(50) NOT NULL," +
                     "PRIMARY KEY (user_id))" +
                     "ENGINE=innodb");
+            //------------CREATE SECONDARY INDEX ON USER-----------
+            stmt.executeUpdate("CREATE INDEX UserIndex ON User(username);");
+            //------------------------------------------------------
             stmt.executeUpdate("CREATE TABLE Visitor(" +
                     "visitor_id INT," +
                     "last_visit DATE," +
@@ -143,6 +146,9 @@ public class database{
                     "end_at VARCHAR(5) NOT NULL," +
                     "PRIMARY KEY(event_id))" +
                     "ENGINE=innodb");
+            //------------CREATE SECONDARY INDEX ON EVENT-----------
+            stmt.executeUpdate("CREATE INDEX EventIndex ON Event(date);");
+            //------------------------------------------------------
             stmt.executeUpdate("CREATE TABLE Group_Tour( " +
                     "group_tour_id INT," +
                     "PRIMARY KEY(group_tour_id)," +
