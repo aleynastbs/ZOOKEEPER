@@ -10,29 +10,31 @@
     
     <body>
         <nav class="navbar navbar-expand-md">
-            <div class="container-fluid">
-                <span class="navbar-brand mb-0 h1">Zoo</span>
-            </div>
-            <div class="collapse navbar-collapse" id="main-navigation">
-                <ul class="nav navbar-nav navbar-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="events_visitor.php">Events</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="shops.php">Shops</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Animals</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"><strong>Membership</strong></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                <div class="container-fluid">
+                    <span class="navbar-brand mb-0 h1">Zoo</span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-navigation">
+                    <ul class="nav navbar-nav navbar-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="conservation_visitor.php">Conservation Organizations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="group_tour_visitor.php">Group Tours</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="shops.html">Shops</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Animals</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="membership.php"><strong>Membership</strong></a>
+                    </ul>
+                </div>
+            </nav>
         
         <?php
         include("configure.php");
