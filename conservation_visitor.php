@@ -100,8 +100,9 @@
             }
             echo"<div style='text-align: center'>Remaining Money: $" . $max_donation . "</div>";
             echo "
-                <div><input type='number' name='donation_amount' style='width: 45%, margin: auto' value='Donation Amount' min='1' max='$max_donation'/></div>
-                <div><input type='submit' name='donate' class='btn btn-outline-success' style='width: 45%, margin: auto' id='donate' value='Donate'/></div>
+                <p>&nbsp;</p>
+                <div class=select-margin><input type='number' name='donation_amount' style='width: 15%' value='Donation Amount' min='1' max='$max_donation'/></div>
+                <div class=select-margin><input type='submit' name='donate' class='btn btn-outline-success' style='width: 15%' id='donate' value='Donate'/></div>
             </form>";
         ?>
     <script>

@@ -39,7 +39,7 @@
                 <td></td>
                 </tr>";
                 $cage_id = $_SESSION['cage_id'];
-                $sql1 = "SELECT Animal.animal_id, animal_name, animal_species
+                $sql1 = "SELECT Animal.animal_id, animal_name, animal_species, cage_id
                         FROM Belongs_to, Animal 
                         WHERE $cage_id = Belongs_to.cage_id and Belongs_to.animal_id = Animal.animal_id";
                 $query = mysqli_query($mysqli,$sql1);
