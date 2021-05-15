@@ -24,7 +24,7 @@
                         <a class="nav-link" href="group_tour_visitor.php">Group Tours</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="shops.html">Shops</a>
+                        <a class="nav-link" href="shops.php">Shops</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Animals</a>

@@ -45,7 +45,10 @@
                         <a class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Events</a>
+                        <a class="nav-link" href="conservation_visitor.php"><strong>Conservation Organizations</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="group_tour_visitor.php">Group Tours</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><strong>',$shop_name,'</strong></a>
