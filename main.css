@@ -19,7 +19,15 @@ body {
     cursor: pointer;
 }
 .nav-link {
-    margin-right: 1em !important;
+    margin-left : 1em;
+}
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: nowrap; 
 }
 .nav-link:hover {
     color: #000;
