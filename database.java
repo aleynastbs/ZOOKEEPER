@@ -329,6 +329,7 @@ public class database{
                     "item_id INT," +
                     "user_id INT," +
                     "amount INT," +
+                    "purchase_date DATE," +
                     "PRIMARY KEY(item_id, user_id)," +
                     "FOREIGN KEY (item_id) REFERENCES Item(item_id)," +
                     "FOREIGN KEY (user_id) REFERENCES User(user_id))" +
@@ -602,7 +603,7 @@ public class database{
                     "(2,4)," +
                     "(2,5);");
             stmt.executeUpdate("INSERT INTO Buys VALUES" +
-                    "(1,1,1);");
+                    "(1,1,1, DATE '2020-05-10');");
             stmt.executeUpdate("INSERT INTO Assigns VALUES" +
                     "(2,1,4),"+
                     "(2,2,7);");

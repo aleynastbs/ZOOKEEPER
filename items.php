@@ -136,7 +136,7 @@
                     $amount = $_GET[$item_ids[$i]];
                     if($amount <= $item_stocks[$i]){
                       $sql = "UPDATE Item 
-                              SET item_stock = item_stock - '$amount'
+                              SET item_stock = item_stock - $amount
                               WHERE item_id = '$item_ids[$i]'";
                       mysqli_query($mysqli,$sql); 
                       $sql = "UPDATE Visitor
@@ -144,7 +144,8 @@
                               WHERE '$visitor_id' = Visitor.visitor_id";
                       mysqli_query($mysqli,$sql); 
                       if($amount > 0){
-                        $sql2 = "INSERT INTO Buys VALUES ('$item_ids[$i]', '$visitor_id', '$amount')";
+                        $date = date("Y-m-d");
+                        $sql2 = "INSERT INTO Buys VALUES ('$item_ids[$i]', '$visitor_id', '$amount', '$date')";
                         mysqli_query($mysqli,$sql2);
                       }
                     }else{
