@@ -19,7 +19,7 @@
                         <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="conservation_visitor.php"><strong>Conservation Organizations</strong></a>
+                        <a class="nav-link" href="conservation_visitor.php">Conservation Organizations</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="group_tour_visitor.php">Group Tours</a>
