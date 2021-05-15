@@ -50,13 +50,11 @@
                 FROM Has 
                 WHERE '$visitor_id' = Has.user_id";
         $membership = mysqli_query($mysqli,$sql);
-        $check = "";
         $row = $membership->fetch_assoc();
         if($row != NULL){
-            $check = $row["type"];
             $mem_id = $row["membership_id"];
         }else{
-            $check = "";
+            $mem_id = "";
         }
         
         ?>
@@ -66,7 +64,7 @@
                 <h1>Manage My Membership</h1>
               </div>
               <?php 
-              if($check == ""){
+              if($mem_id == ""){
                 
                 echo "<input class='list-group-item list-group-item-action disabled' type='submit' value ='Cancel My Membership'>";
                 echo "<form class = 'mem-form' method = 'get'><input class='list-group-item list-group-item-action' name ='gold' type='submit' value='Start a Gold Membership'></form>";
@@ -92,19 +90,19 @@
                     </script>";
                 }
                 if(isset($_GET["gold"])){
-                    if($budget > 200){
-                        $sql = "INSERT INTO Membership (expiration_date, price) 
-                                VALUES ('$expiration_date', 200)";
+                    if($budget >= 200){
+                        $sql = "INSERT INTO Membership (expiration_date, price, membership_type) 
+                                VALUES ('$expiration_date', 200, 'Gold')";
                         mysqli_query($mysqli,$sql);
                         $last_id = mysqli_insert_id($mysqli);
-                        $sql = "INSERT INTO Has VALUES ('$last_id', '$visitor_id', 'gold')";
+                        $sql = "INSERT INTO Has VALUES ('$last_id', '$visitor_id')";
                         mysqli_query($mysqli,$sql);
                         $sql = "UPDATE Visitor
                                 SET total_amount_of_money = total_amount_of_money - 200
                                 WHERE '$visitor_id' = Visitor.visitor_id";
                         mysqli_query($mysqli,$sql);
                         echo "<script>
-                        var budget = $budget - 100;
+                        var budget = $budget - 200;
                         alert('Your Remaining Money: ' + budget);
                         window.location.href='membership.php';
                         </script>";
@@ -116,12 +114,12 @@
                         </script>";
                     }
                 }else if(isset($_GET["silver"])){
-                    if($budget > 100){
-                        $sql = "INSERT INTO Membership (expiration_date, price) 
-                                VALUES ('$expiration_date', 100)";
+                    if($budget >= 100){
+                        $sql = "INSERT INTO Membership (expiration_date, price, membership_type) 
+                                VALUES ('$expiration_date', 100, 'Silver')";
                         mysqli_query($mysqli,$sql);
                         $last_id = mysqli_insert_id($mysqli);
-                        $sql = "INSERT INTO Has VALUES ('$last_id', '$visitor_id', 'silver')";
+                        $sql = "INSERT INTO Has VALUES ('$last_id', '$visitor_id')";
                         mysqli_query($mysqli,$sql);
                         $sql = "UPDATE Visitor
                                 SET total_amount_of_money = total_amount_of_money - 100

@@ -129,6 +129,7 @@ public class database{
                     "membership_id INT AUTO_INCREMENT," +
                     "expiration_date DATE NOT NULL," +
                     "price INT NOT NULL," +
+                    "membership_type VARCHAR(50) NOT NULL," +
                     "PRIMARY KEY (membership_id))" +
                     "ENGINE=innodb");
             stmt.executeUpdate("CREATE TABLE Event(" +
@@ -159,7 +160,6 @@ public class database{
             stmt.executeUpdate("CREATE TABLE Has(" +
                     "membership_id INT," +
                     "user_id INT," +
-                    "type VARCHAR(50) NOT NULL," +
                     "PRIMARY KEY (membership_id)," +
                     "FOREIGN KEY (membership_id) REFERENCES Membership(membership_id)," +
                     "FOREIGN KEY (user_id) REFERENCES Visitor(visitor_id))" +
@@ -380,10 +380,10 @@ public class database{
                     "(7);");
             stmt.executeUpdate("INSERT INTO Comment(content, like_amount, dislike_amount) VALUES" +
                     "('good', 10, 5);");
-            stmt.executeUpdate("INSERT INTO Membership(expiration_date, price) VALUES" +
-                    "(DATE '2022-05-08', 200);");
+            stmt.executeUpdate("INSERT INTO Membership(expiration_date, price, membership_type) VALUES" +
+                    "(DATE '2022-05-08', 200, 'Gold');");
             stmt.executeUpdate("INSERT INTO Has VALUES" +
-                    "(1, 1, 'gold')");
+                    "(1, 1)");
             stmt.executeUpdate("INSERT INTO Event(event_name, description, max_capacity, num_of_participants, date, start_at, end_at) VALUES" +
                     "('event1', 'fun', 100, 20, DATE '2022-05-08', '10:00', '11:00')," +
                     "('event2', 'not fun', 50, 30, DATE '2022-07-08', '10:00', '11:00')," +
