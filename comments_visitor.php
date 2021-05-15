@@ -37,12 +37,9 @@
         </nav>
         <form method='post' class='table-form'>
         <h3 style="text-align:left">Add Your Comment</h3>
-        <div class="item">
-                <label for="comment_box"></label>
-                <textarea rows="3"></textarea>
-        </div>
+        <div><textarea rows="3" name='comment_box' id='comment_box'></textarea></div>
         <div class='select-margin'><input type='submit' name='leave_comment' class='btn btn-outline-success' style='width: 15%' id='leave_comment' value='Comment'/></div>
-        <div class='select-margin'><a href="events_visitor.html" class="btn btn-outline-success btn" role="button">Back To Event List</a></div>
+        <div class='select-margin'><a href="group_tour_visitor.php" class="btn btn-outline-success btn" role="button">Back To Event List</a></div>
         <p>&nbsp;</p>
         <h3 style="text-align:left">Comments</h3>
         <table style="width:100%" class="center">
@@ -56,6 +53,7 @@
         <?php
             include('configure.php');
             session_start();
+            $vis_id = 1; #fixxxxx
             $gt_id = $_SESSION['gt_id'];
             $sql1 = "SELECT * FROM Comments INNER JOIN Comment ON Comments.comment_id = Comment.comment_id
                                             INNER JOIN User ON Comments.user_id = User.user_id 
@@ -66,14 +64,26 @@
                     "</td><td style='text-align:center'>" . $result['content'] . 
                     "</td><td style='text-align:center'>" . $result['date'] . 
                     "</td><td style='text-align:center'>". $result['like_amount'] . " " .
-                            "<button style='border: none; background-color:#6ab446; border-radius: 50%'><i class='fa fa-thumbs-o-up' style='color: #ffffff'></i></button>
-                            " .
+                    "<button name='like' style='border: none; background-color:#6ab446; border-radius: 50%'><i class='fa fa-thumbs-o-up' style='color: #ffffff'></i></button>" .
                     "</td><td style='text-align:center'>" . $result['dislike_amount'] . " " .
-                    "<button style='border: none; background-color: red; border-radius: 50%'><i class='fa fa-thumbs-o-down' style='color: #ffffff'></i></button>" . "</td>";
+                    "<button name='dislike' style='border: none; background-color: red; border-radius: 50%'><i class='fa fa-thumbs-o-down' style='color: #ffffff'></i></button>" . "</td>";
                 echo "</tr>";
             }
-            echo "</table>
-        </form>";
+            echo "</table></form>";
+            if(isset($_POST['leave_comment'])){
+                if(!empty($_POST['comment_box'])){
+                    $comment = $_POST['comment_box'];
+                    $date = date("Y-m-d");
+                    $sql2="INSERT INTO Comment (content, like_amount, dislike_amount) VALUES ('$comment', 0, 0)";
+                    mysqli_query($mysqli,$sql2);
+                    $id = mysqli_insert_id($mysqli);
+                    $sql3="INSERT INTO Comments (comment_id, user_id, groupTour_id, date) VALUES ($id, $vis_id, $gt_id, '$date')";
+                    mysqli_query($mysqli,$sql3);
+                    echo "<script>window.location = 'comments_visitor.php';</script>";
+                }
+            }
+
+
         ?>
         </body>
         <script>
