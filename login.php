@@ -51,11 +51,12 @@
         <?php
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 if(isset($_GET['login'])){
-                  if(isset($GET['username']) && isset($GET['username'])){
-                    $username = $GET['username'];  
+                  if(isset($_GET['username']) && isset($_GET['password'])){
+                    $username = $_GET['username'];  
                     $sql = "SELECT * FROM User WHERE User.username = '$username'";
                     $user_info = mysqli_query($mysqli,$sql);
-                    echo $user_info->fetch_assoc()["user_id"];
+                    $user_id = $user_info->fetch_assoc()['user_id'];
+                    
                   }
                 }
             }
