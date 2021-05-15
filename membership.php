@@ -142,9 +142,6 @@
                     $sql = "DELETE FROM Has 
                             WHERE membership_id = '$mem_id'";
                     mysqli_query($mysqli,$sql);
-                    $sql = "DELETE FROM Membership 
-                            WHERE membership_id = '$mem_id'";
-                    mysqli_query($mysqli,$sql);
                     echo "<script>
                     var budget = $budget;
                     alert('Your Membership is Cancelled');
