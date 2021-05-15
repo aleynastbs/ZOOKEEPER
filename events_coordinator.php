@@ -23,19 +23,24 @@
                     <li class="nav-item">
                         <a class="nav-link" href="view_cages_coordinator.php">View & Assign Cages</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="view_reports_coordinator.php">View Reports</a>
+                    </li>
                 </ul>
             </div>
         </nav>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        
-        <h3 style="text-align:center">Events</h3>
-        <table style="width:45%" class="center">
+        <div class='headerCustom'>
+            <h3 style="text-align:center">Events</h3>
+        </div>
+        <table style="width:80%" class="center">
             <tr>
-                <th style="text-align:center">Event ID</th>
-                <th style="text-align:center">Event Name</th>
-                <th style="text-align:center">Event Date</th>
-                <td></td>
+                <th style="text-align:center">ID</th>
+                <th style="text-align:center">Name</th>
+                <th style="text-align:center">Date</th>
+                <th style="text-align:center">Start/End Time</th>
+                <th style="text-align:center">Current Participants</th>
+                <th style="text-align:center">Max Capacity</th>
+                <th style="text-align:center">Description</th>
               </tr>
             <?php
                 include('configure.php');
@@ -45,8 +50,11 @@
                 while($result = $query -> fetch_assoc()) {
                     echo "<tr><td style='text-align:center'>" . $result['event_id'] . 
                          "</td><td style='text-align:center'>" . $result['event_name'] . 
-                         "</td><td style='text-align:center'>" . $result['date'] ."</td>";
-                    echo "<th style='text-align:center' scope='row' ><a href='#link' class='btn btn-outline-success btn-sm' role='button'>More Details</a></th>"; 
+                         "</td><td style='text-align:center'>" . $result['date'] .
+                         "</td><td style='text-align:center'>" . $result['start_at'] . " / " . $result['end_at'] .
+                         "</td><td style='text-align:center'>" . $result['num_of_participants'] .
+                         "</td><td style='text-align:center'>" . $result['max_capacity'] .
+                         "</td><td style='text-align:center'>" . $result['description'] ."</td>";
                     echo "</tr>";
                 }
                 echo "</table>";
