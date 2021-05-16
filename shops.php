@@ -50,10 +50,12 @@
                 </ul>
             </div>
         </nav>
-
         <?php
-
-        $sql2 = "CALL list_shops();"; //call to the stored procedure
+        $sql = "CREATE VIEW shops_view (name, description, area_name) AS
+        SELECT shop_name, shop_description, area_name
+        FROM Shop NATURAL JOIN Is_In_S NATURAL JOIN Area";
+        mysqli_query($mysqli,$sql);
+        $sql2 = "SELECT * FROM shops_view";
         $shops = mysqli_query($mysqli,$sql2);
         $shop_names = [];
 
@@ -75,19 +77,19 @@
               while($row = $shops->fetch_assoc()) {
               echo 
               '<tbody><tr>
-                  <th scope="row"><form method = "get" ><input class="btn btn-outline-success" type="submit" name = "', $row["shop_name"], '" value="Go"><form/></th>
-                  <td>', $row["shop_name"], '</td>
-                  <td>',$row["area_name"],'</td>
-                  <td>',$row["shop_description"],'</td>
+                  <th scope="row"><form method = "get" ><input class="btn btn-outline-success" type="submit" name = "', $row["name"], '" value="Go"><form/></th>
+                  <td>', $row["name"], '</td>
+                  <td>',$row["name"],'</td>
+                  <td>',$row["description"],'</td>
                 </tr></tbody>';
-              array_push($shop_names, $row["shop_name"]);
+              array_push($shop_names, $row["name"]);
               }
             }
 
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 foreach($shop_names as $name){
                     if(isset($_GET[$name])){
-                        $_SESSION['shop_name'] = $name;
+                        $_SESSION['name'] = $name;
                         echo "<script>window.location.href='items.php';</script>";
                     }
                 }
