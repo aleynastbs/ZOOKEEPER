@@ -56,7 +56,6 @@
                 <th style='text-align:center'>Cage Size</th>
                 <th style='text-align:center'>Cage Type</th>
                 <th style='text-align:center'>Animal Species</th>
-                <td></td>
                 </tr>";
                 $co_id = $_SESSION['user_id'];
                 $sql1 = "SELECT cage_id, cage_size, cage_type, animal_species, animal_id, keeper_id
@@ -70,7 +69,6 @@
                          "</td><td style='text-align:center'>" . $result['cage_size'] . 
                          "</td><td style='text-align:center'>" . $result['cage_type'] ."</td>" .
                          "<td style='text-align:center'>" . $result['animal_species'] ."</td>";
-                    echo "<th style='text-align:center' scope='row' ><a href='#link' class='btn btn-outline-success btn-sm' role='button'>More Details</a></th>"; 
                     echo "</tr>";
                  }
                 echo "</table>";
