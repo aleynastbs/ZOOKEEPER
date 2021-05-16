@@ -89,7 +89,7 @@
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 foreach($shop_names as $name){
                     if(isset($_GET[$name])){
-                        $_SESSION['name'] = $name;
+                        $_SESSION['shop_name'] = $name;
                         echo "<script>window.location.href='items.php';</script>";
                     }
                 }
