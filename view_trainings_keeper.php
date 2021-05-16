@@ -40,7 +40,7 @@
     
     <?php
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                echo "<div class='headerCustom><h3 style='text-align:center'>Trainings</h3></div><form class='table-form' method='get'>
+                echo "<div class='headerCustom'><h3 style='text-align:center'>Trainings</h3></div><form class='table-form' method='get'>
                 <table style='width:45%' class='center'>
                 <tr>
                 <th style='text-align:center'>Training Topic</th>
