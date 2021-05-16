@@ -89,7 +89,7 @@
               while($row = $items->fetch_assoc()) {
               echo 
               '<tbody><tr>
-                  <th scope="row" ><form method = "get" ><input type = "input" name ="', $row["item_id"], '" style = "width:50px;"/><form/></th>',
+                  <th scope="row" ><form method = "get" ><label for="quantity"></label><input type = "number"  min= "0" max="', $row["item_stock"] ,'" name ="', $row["item_id"], '" style = "width:50px;"/><form/></th>',
                   '<td>', $row["item_name"], '</td>
                   <td>',$row["item_price"],'</td>
                   <td>',$row["item_stock"],'</td>
@@ -131,24 +131,23 @@
                   $total_amount += (int)$amount;
                   $total_price += (int)$item_prices[$i] * (int)$amount;  
                 }
-                if($total_price > $budget ){
+                if($total_price > $budget){
                   echo "<script>
                   alert('Your Total Amount of Money is Not Enough');
                   window.location.href='items.php';
                   </script>";
                 }
                 else{
-                  $check = 0;
-                  $exceed = "These could not be bought: ";
                   for($i=0; $i < $count; $i++){
-                    $amount = $_GET[$item_ids[$i]];
-                    if($amount <= $item_stocks[$i]){
+                    $amount = (int)$_GET[$item_ids[$i]];
+                    if($amount <= (int)$item_stocks[$i]){
                       $sql = "UPDATE Item 
                               SET item_stock = item_stock - $amount
                               WHERE item_id = '$item_ids[$i]'";
                       mysqli_query($mysqli,$sql); 
+                      $price = (int)$item_prices[$i] * $amount;
                       $sql = "UPDATE Visitor
-                              SET total_amount_of_money = total_amount_of_money - '$total_price'
+                              SET total_amount_of_money = total_amount_of_money - $price
                               WHERE '$visitor_id' = Visitor.visitor_id";
                       mysqli_query($mysqli,$sql); 
                       if($amount > 0){
@@ -156,33 +155,21 @@
                         $sql2 = "INSERT INTO Buys(item_id, user_id, amount, purchase_date) VALUES ('$item_ids[$i]', '$visitor_id', '$amount', '$date')";
                         mysqli_query($mysqli,$sql2);
                       }
-                    }else{
-                      $exceed = $exceed . $item_names[$i] . " ";
-                      $check = 1;
-                    } 
+                    }
                   }
                   if($total_amount > 0){
-                    $remaining = $budget - $total_price;
-                    if($check == 1){
-                      echo "<script>
-                      var remaining = $remaining;
-                      var exceed = '$exceed';
-                      alert('Transaction is partially successful, Remaining Money: ' + remaining + ', ' + exceed);
-                      window.location.href='items.php';
-                      </script>";
-                    }else{
-                      echo "<script>
-                      var remaining = $remaining;
-                      alert('Transaction is successful, Remaining Money: ' + remaining);
-                      window.location.href='items.php';
-                      </script>";
-                    }
+                    echo "<script>
+                    var remaining = $budget - $total_price;
+                    alert('Transaction is successful, Remaining Money: ' + remaining);
+                    window.location.href='items.php';
+                    </script>";
                   }else{
                     echo "<script>
                     alert('You did not select an item');
                     window.location.href='items.php';
                     </script>";
                   }
+               
                 }
                 
               }
